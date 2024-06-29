@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로또 번호 추천 및 당첨 확인</title>
+</head>
+<body>
+    <h1>로또 번호 추천 및 당첨 확인</h1>
+    <form action="/recommend" method="post">
+        <label for="num_sets">몇 세트의 로또 번호를 추천받으시겠습니까?</label>
+        <input type="number" id="num_sets" name="num_sets" min="1" required>
+        <button type="submit">추천 번호 생성</button>
+    </form>
+    <form action="/check" method="post">
+        <button type="submit">당첨 번호 확인</button>
+    </form>
+</body>
+</html>

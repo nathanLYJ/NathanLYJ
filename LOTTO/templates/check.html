@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>당첨 번호 확인</title>
+</head>
+<body>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+        <h1>{{ draw_no }}회차 당첨 번호</h1>
+        <p>당첨 번호: {{ winning_numbers }}</p>
+        <p>보너스 번호: {{ winning_bonus }}</p>
+    {% endif %}
+    <a href="/">돌아가기</a>
+</body>
+</html>

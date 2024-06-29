@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>추천 로또 번호</title>
+</head>
+<body>
+    <h1>{{ date }} 추천 로또 번호</h1>
+    {% for recommendation in recommendations %}
+        <p>세트 {{ recommendation.set }}: {{ recommendation.numbers }}, 보너스 번호: {{ recommendation.bonus }}</p>
+    {% endfor %}
+    <p>추천 번호가 lotto_recommendations.csv 파일에 저장되었습니다.</p>
+    <a href="/">돌아가기</a>
+</body>
+</html>
