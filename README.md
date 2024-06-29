@@ -1,8 +1,6 @@
 ## Hi there 👋
-# 프로젝트 이름
+Get into Python
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
 
 
 
