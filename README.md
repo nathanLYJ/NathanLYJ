@@ -1,6 +1,8 @@
 ## Hi there 👋
 Get into Python
 
+<details>
+<summary>Click to play a simple game!</summary>
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
   <circle id="player" cx="100" cy="100" r="10" fill="blue" />
   <text id="score" x="10" y="20" font-family="Arial" font-size="16" fill="black">Score: 0</text>
@@ -27,8 +29,7 @@ Get into Python
     ]]>
   </script>
 </svg>
-
-
+</details>
 
 <!--
 **nathanLYJ/NathanLYJ** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
