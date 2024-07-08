@@ -1,11 +1,9 @@
-[<img src="./Ai_images/long%20hair%20mafia.png" width="100" height="80"/>](https://nathanlyj.github.io/NathanLYJ/) **The following image is generated using AI**
-[my blog](https://nathanlyj.github.io/NathanLYJ/)
-
-[<img src="./icons/profile.gif"/>](https://github.com/nathanLYJ)
+[<img src="./icons/profile.gif" width="100" height="80"/>](https://github.com/nathanLYJ)
+**아이콘에 내 프로필 링크 추가**
 
 
 
-
+* [my blog](https://nathanlyj.github.io/NathanLYJ/)
 
 
 
