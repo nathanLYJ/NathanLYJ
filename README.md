@@ -1,3 +1,2 @@
-<img src="./Ai_images/long%20hair%20mafia.png" width="100" height="80"/> **The following image is generated using AI**
+<img src="./Ai_images/long%20hair%20mafia.png" width="100" height="80"/>(https://nathanlyj.github.io/NathanLYJ/) **The following image is generated using AI**
 [my blog](https://nathanlyj.github.io/NathanLYJ/)
-
