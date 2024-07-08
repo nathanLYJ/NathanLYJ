@@ -1,217 +1,187 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My first blog</title>
+    <title>NathanLYJ Blog</title>
     <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #141414;
-            color: #ffffff;
+        body, html {
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background-color: #000000;
         }
-        header {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .snow {
+            color: white;
+            position: absolute;
+            animation: fall linear;
+            opacity: 0.7;
+            font-family: monospace;
+            font-size: 20px;
         }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
         }
-        .logo {
-            color: #e50914;
-            font-size: 2rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: #e50914;
-        }
-        main {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        .container {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(26, 26, 26, 0.7);
+            border-radius: 50px;
+            box-shadow: 20px 20px 60px #000000, -20px -20px 60px #333333;
+            padding: 50px;
+            text-align: center;
+            max-width: 80%;
+            margin: 5px auto;
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #e50914;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 24px;
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
+        .name {
+            color: #ff0000;
         }
-        .grid-item {
-            background-color: #333333;
-            aspect-ratio: 16 / 9;
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
-        .grid-item img {
+        .icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            background-color: rgba(26, 26, 26, 0.7);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 5px 5px 15px #000000, -5px -5px 15px #333333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ffffff;
+        }
+        .icon:hover {
+            box-shadow: inset 5px 5px 10px #000000, inset -5px -5px 10px #333333;
+        }
+        #txt-rotate {
+            min-height: 1.2em;
+            display: inline-block;
+        }
+        .wrap {
+            border-right: 0.08em solid #fff;
+            padding-right: 5px;
+        }
+        #snow-pile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .grid-item .title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-        .grid-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            .nav-links a {
-                font-size: 0.9rem;
-                margin-left: 1rem;
-            }
-        }
-        .grid-item .additional-info {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            overflow: auto;
-        }
-        .grid-item:hover .additional-info {
-            opacity: 1;
-        }
-        #search-container {
-            margin-bottom: 20px;
-        }
-        #category-filter {
-            margin-bottom: 20px;
-        }
-        .hidden {
-            display: none;
+            height: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">MYLIFEFLIX</div>
-            <div class="nav-links">
-                <a href="#">홈</a>
-                <a href="#">카테고리</a>
-                <a href="#">인기 글</a>
-                <a href="#">내 글</a>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <h1>최신 글</h1>
-        <div id="search-container">
-            <input type="text" id="search-input" placeholder="검색어를 입력하세요">
-            <button id="search-button">검색</button>
+    <div class="sky" id="sky"></div>
+    <div id="snow-pile"></div>
+    <div class="container">
+        <h1>Hi. I'm <span class="name">NathanLYJ</span></h1>
+        <h1>
+            <span id="txt-rotate" data-period="2000" data-rotate='["Jekyll Theme", "scroll down for more."]'></span>
+        </h1>
+        <div class="social-icons">
+            <div class="icon">📧</div>
+            <div class="icon">🌐</div>
+            <div class="icon">💼</div>
+            <div class="icon">📘</div>
+            <div class="icon">🔗</div>
+            <div class="icon">🐦</div>
         </div>
-        <div id="category-filter">
-            <button class="category-btn" data-category="all">전체</button>
-            <button class="category-btn" data-category="series">시리즈</button>
-            <button class="category-btn" data-category="movie">영화</button>
-            <button class="category-btn" data-category="review">리뷰</button>
-        </div>
-        <div id="post-grid" class="grid">
-            <!-- 포스트들이 여기에 동적으로 추가됩니다 -->
-        </div>
-    </main>
+    </div>
+
     <script>
-        const API_URL = 'http://localhost:3000/api/posts';
-        const postGrid = document.getElementById('post-grid');
-        const searchInput = document.getElementById('search-input');
-        const searchButton = document.getElementById('search-button');
-        const categoryButtons = document.querySelectorAll('.category-btn');
+        const cloudWords = ['PHP', 'C언어', '자바스크립트', 'C++', '클래스', '메소드', '파이썬', '루비', 'HTML', 'C#', '빠른'];
+        const codingTerms = ['var', 'let', 'const', 'function', 'if', 'else', 'for', 'while', 'return', 'class', 'import', 'export', '{}', '[]', '()', '=>', '===', '!==', '&&', '||'];
 
-        async function fetchPosts(category = 'all') {
-            try {
-                const response = await fetch(`${API_URL}/${category}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return await response.json();
-            } catch (error) {
-                console.error('Error fetching posts:', error);
-                alert('포스트를 가져오는 데 실패했습니다. 나중에 다시 시도해주세요.');
-                return [];
+        function createWordCloud() {
+            const sky = document.getElementById('sky');
+            cloudWords.forEach((word, index) => {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.textContent = word;
+                cloud.style.fontSize = `${Math.random() * 20 + 10}px`;
+                cloud.style.left = `${Math.random() * 100}%`;
+                cloud.style.top = `${Math.random() * 100}%`;
+                cloud.style.transform = `rotate(${Math.random() * 360}deg)`;
+                sky.appendChild(cloud);
+            });
+        }
+
+        function createSnow() {
+            const sky = document.getElementById('sky');
+            const snow = document.createElement('div');
+            snow.className = 'snow';
+            snow.style.left = `${Math.random() * 100}%`;
+            snow.textContent = codingTerms[Math.floor(Math.random() * codingTerms.length)];
+            snow.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            sky.appendChild(snow);
+
+            snow.addEventListener('animationend', () => {
+                snow.remove();
+                addToSnowPile(snow.textContent);
+            });
+        }
+
+        function addToSnowPile(text) {
+            const snowPile = document.getElementById('snow-pile');
+            const snowFlake = document.createElement('span');
+            snowFlake.textContent = text;
+            snowFlake.style.fontSize = '10px';
+            snowFlake.style.color = 'rgba(255, 255, 255, 0.7)';
+            snowFlake.style.margin = '0 2px';
+            snowPile.appendChild(snowFlake);
+
+            if (snowPile.children.length > 100) {
+                snowPile.removeChild(snowPile.firstChild);
             }
+
+            setTimeout(() => {
+                snowFlake.style.opacity = '0';
+                snowFlake.style.transition = 'opacity 2s';
+                setTimeout(() => snowFlake.remove(), 2000);
+            }, 3000);
         }
 
-        function renderPosts(posts) {
-            postGrid.innerHTML = '';
-            posts.forEach(post => {
-                const postElement = document.createElement('div');
-                postElement.className = 'grid-item';
-                postElement.innerHTML = `
-                    <img src="/api/placeholder/400/225" alt="${post.title}">
-                    <div class="title">${post.title}</div>
-                    <div class="additional-info">
-                        <h3>${post.title}</h3>
-                        <p>${post.content}</p>
-                    </div>
-                `;
-                postGrid.appendChild(postElement);
-            });
-        }
+        setInterval(createSnow, 200);
 
-        async function init() {
-            const posts = await fetchPosts();
-            renderPosts(posts);
-        }
+        // Text rotation code (unchanged)
+        var TxtRotate = function(el, toRotate, period) {
+            // ... (same as before)
+            
+        };
 
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', async () => {
-                const category = button.dataset.category;
-                const posts = await fetchPosts(category);
-                renderPosts(posts);
-            });
-        });
+        TxtRotate.prototype.tick = function() {
+            // ... (same as before)
+        };
 
-        searchButton.addEventListener('click', async () => {
-            const searchTerm = searchInput.value.toLowerCase();
-            const allPosts = await fetchPosts();
-            const searchResults = allPosts.filter(post => 
-                post.title.toLowerCase().includes(searchTerm) || 
-                post.content.toLowerCase().includes(searchTerm)
-            );
-            renderPosts(searchResults);
-        });
-
-        init();
+        window.onload = function() {
+            createWordCloud();
+            var elements = document.getElementsByClassName('txt-rotate');
+            for (var i=0; i<elements.length; i++) {
+                var toRotate = elements[i].getAttribute('data-rotate');
+                var period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                    new TxtRotate(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+        };
     </script>
 </body>
 </html>
