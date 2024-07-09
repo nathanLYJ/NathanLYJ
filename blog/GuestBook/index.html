@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방명록</title>
+	<link rel="stylesheet" href="/blog/CSS/common.css">
+    <style>
+		
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; }
+        #guestbook-form { margin-bottom: 20px; }
+        #guestbook-entries { border-top: 1px solid #ccc; padding-top: 20px; }
+        .entry { margin-bottom: 10px; padding: 10px; background-color: #202020; }
+		.delete-btn {
+            display: none;
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .entry:hover .delete-btn {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guest Book</h1>
+    
+    <div id="guestbook-form">
+        
+        <form id="entry-form">
+            <div>
+                <label for="name">이름:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div>
+                <label for="message">메시지:</label>
+                <textarea id="message" required></textarea>
+            </div>
+            <button type="submit">등록</button>
+			<a href="/index.html"  class="button" >메인</a>
+        </form>
+    </div>
+	
+	
+
+    <div id="guestbook-entries">
+        <h2>방명록 내용</h2>
+        <!-- 여기에 방명록 항목들이 추가됩니다 -->
+    </div>
+
+    <script>
+        const entryForm = document.getElementById('entry-form');
+        const guestbookEntries = document.getElementById('guestbook-entries');
+
+        // 로컬 스토리지에서 기존 항목 불러오기
+        let entries = JSON.parse(localStorage.getItem('guestbookEntries')) || [];
+
+        // 기존 항목 표시
+        function displayEntries() {
+            guestbookEntries.innerHTML = '<h2>방명록 내용</h2>';
+            entries.forEach((entry, index) => {
+                const entryElement = document.createElement('div');
+                entryElement.className = 'entry';
+                entryElement.innerHTML = `
+                    <strong>${entry.name}</strong> (${entry.timestamp})
+                    <p>${entry.message}</p>
+					 <button class="delete-btn" data-index="${index}">삭제</button>
+                `;
+                guestbookEntries.appendChild(entryElement);
+            });
+        }
+
+        // 새 항목 추가
+        entryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            const timestamp = new Date().toLocaleString();
+
+            entries.push({ name, message, timestamp });
+            localStorage.setItem('guestbookEntries', JSON.stringify(entries));
+
+            displayEntries();
+            entryForm.reset();
+        });
+
+		guestbookEntries.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-btn')) {
+                const index = e.target.dataset.index;
+                if (confirm('정말로 이 항목을 삭제하시겠습니까?')) {
+                    entries.splice(index, 1);
+                    localStorage.setItem('guestbookEntries', JSON.stringify(entries));
+                    displayEntries();
+                }
+            }
+        });
+		
+
+
+
+        // 초기 항목 표시
+        displayEntries();
+    </script>
+</body>
+</html>
