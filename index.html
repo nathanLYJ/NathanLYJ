@@ -4,131 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NathanLYJ Blog</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-            background-color: #000000;
-        }
-        .snow {
-            color: white;
-            position: absolute;
-            animation: fall linear;
-            opacity: 0.7;
-            font-family: monospace;
-            font-size: 20px;
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
-        }
-        .container {
-            position: relative;
-            z-index: 1;
-            background-color: rgba(26, 26, 26, 0.7);
-            border-radius: 50px;
-            box-shadow: 20px 20px 60px #000000, -20px -20px 60px #333333;
-            padding: 50px;
-            text-align: center;
-            max-width: 80%;
-            margin: 5px auto;
-        }
-        h1 {
-            color: #ffffff;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        .name {
-            color: #ff0000;
-        }
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .icon {
-            width: 40px;
-            height: 40px;
-            margin: 0 10px;
-            background-color: rgba(26, 26, 26, 0.7);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 5px 5px 15px #000000, -5px -5px 15px #333333;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #ffffff;
-            text-decoration: none;
-        }
-        .icon:hover {
-            box-shadow: inset 5px 5px 10px #000000, inset -5px -5px 10px #333333;
-        }
-        #txt-rotate {
-            min-height: 1.2em;
-            display: inline-block;
-        }
-        .wrap {
-            border-right: 0.08em solid #fff;
-            padding-right: 5px;
-        }
-        #snow-pile {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-end;
-            overflow: hidden;
-        }
-    </style>
+    <!-- 공통 CSS 파일 연결 -->
+    <link rel="stylesheet" href="blog/CSS/common.css">
 </head>
 <body>
+    <!-- 눈이 내리는 효과를 위한 컨테이너 -->
     <div class="sky" id="sky"></div>
+    <!-- 눈이 쌓이는 효과를 위한 컨테이너 -->
     <div id="snow-pile"></div>
+    <!-- 메인 컨텐츠 컨테이너 -->
     <div class="container">
         <h1>Hi. I'm <span class="name">NathanLYJ</span></h1>
+        <!-- 텍스트 회전 효과를 위한 요소 -->
         <h1>
             <span id="txt-rotate" data-period="2000" data-rotate='["Jekyll Theme", "scroll down for more."]'></span>
         </h1>
+        <!-- 소셜 아이콘 링크 -->
         <div class="social-icons">
-            <a href="mailto:nathanlyj@gmail.com"class="icon" title="이메일 보내기">📧</a>
-            <a href="blog/frontend/index.html"class="icon">🌐</a>
+            <a href="mailto:nathanlyj@gmail.com" class="icon" title="이메일 보내기">📧</a>
+            <a href="blog/frontend/index.html" class="icon">🌐</a>
             <a href="https://github.com/nathanLYJ">
                 <img src="./icons/profile.gif" class="icon" alt="Nathan LYJ의 프로필"/>
             </a>
             <a href="" class="icon">📘</a>
             <a href="" class="icon">👥</a>
-            <a href="blog/GuestBook/index.html" > 
+            <a href="blog/GuestBook/index.html"> 
                 <img src="./icons/note.gif" class="icon" alt="방명록"/>
             </a>
         </div>
     </div>
 
     <script>
-        const cloudWords = ['PHP', 'C언어', '자바스크립트', 'C++', '클래스', '메소드', '파이썬', '루비', 'HTML', 'C#', '빠른'];
+        // 눈 효과를 위한 코딩 용어 배열
         const codingTerms = ['var', 'let', 'const', 'function', 'if', 'else', 'for', 'while', 'return', 'class', 'import', 'export', '{}', '[]', '()', '=>', '===', '!==', '&&', '||'];
 
-        function createWordCloud() {
-            const sky = document.getElementById('sky');
-            cloudWords.forEach((word, index) => {
-                const cloud = document.createElement('div');
-                cloud.className = 'cloud';
-                cloud.textContent = word;
-                cloud.style.fontSize = `${Math.random() * 20 + 10}px`;
-                cloud.style.left = `${Math.random() * 100}%`;
-                cloud.style.top = `${Math.random() * 100}%`;
-                cloud.style.transform = `rotate(${Math.random() * 360}deg)`;
-                sky.appendChild(cloud);
-            });
-        }
-
+        // 눈 생성 함수
         function createSnow() {
             const sky = document.getElementById('sky');
             const snow = document.createElement('div');
@@ -144,6 +54,7 @@
             });
         }
 
+        // 눈 쌓기 함수
         function addToSnowPile(text) {
             const snowPile = document.getElementById('snow-pile');
             const snowFlake = document.createElement('span');
@@ -164,18 +75,19 @@
             }, 3000);
         }
 
+        // 눈 생성 간격 설정
         setInterval(createSnow, 200);
 
-        // Text rotation code (unchanged)
+        // 텍스트 회전 효과 클래스
         var TxtRotate = function(el, toRotate, period) {
-            // ... (same as before)
-            
+            // ... (기존 코드 유지)
         };
 
         TxtRotate.prototype.tick = function() {
-            // ... (same as before)
+            // ... (기존 코드 유지)
         };
 
+        // 페이지 로드 시 실행되는 함수
         window.onload = function() {
             createWordCloud();
             var elements = document.getElementsByClassName('txt-rotate');
