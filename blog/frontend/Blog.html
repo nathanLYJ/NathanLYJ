@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My first blog</title>
     <link rel="stylesheet" href="frontend.css">
 </head>
+
 <body>
     <header>
         <nav>
@@ -34,22 +36,47 @@
             <!-- 포스트들이 여기에 동적으로 추가됩니다 -->
         </div>
     </main>
-    
+
     <!-- 블로그 글 데이터를 포함하는 JavaScript 파일 -->
     <script src="blog-posts.js"></script>
-    
+
     <script>
+        async function fetchPosts() {
+            try {
+                const response = await fetch('/api/posts');  // 실제 API 엔드포인트로 변경해야 합니다
+                if (!response.ok) {
+                    throw new Error('서버에서 데이터를 가져오는데 실패했습니다');
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+                return [];
+            }
+        }
         const postGrid = document.getElementById('post-grid');
         const searchInput = document.getElementById('search-input');
         const searchButton = document.getElementById('search-button');
         const categoryButtons = document.querySelectorAll('.category-btn');
 
-        function getPosts(category = 'all') {
+        async function getPosts(category = 'all') {
+            const posts = await fetchPosts();
             if (category === 'all') {
-                return blogPosts;
+                return posts;
             }
-            return blogPosts.filter(post => post.category === category);
+            return posts.filter(post => post.category === category);
         }
+
+        function getContentPreview(content, maxLength = 100) {
+            if (content.length <= maxLength) return content;
+            let trimmedContent = content.substr(0, maxLength);
+            let lastSpaceIndex = trimmedContent.lastIndexOf(' ');
+            if (lastSpaceIndex > maxLength * 0.8) { // 마지막 공백이 너무 뒤에 있지 않은 경우에만 자름
+                trimmedContent = trimmedContent.substr(0, lastSpaceIndex);
+            }
+            return trimmedContent + '...';
+        }
+
+
 
         function renderPosts(posts) {
             postGrid.innerHTML = '';
@@ -57,15 +84,15 @@
                 const postElement = document.createElement('div');
                 postElement.className = 'grid-item';
                 postElement.innerHTML = `
-                    <img src="https://via.placeholder.com/400x225" alt="${post.title}">
-                    <div class="title">${post.title}</div>
-                    <div class="additional-info">
-                        <h3>${post.title}</h3>
-                        <p>${post.content}</p>
-                        <p>카테고리: ${post.category}</p>
-                        <p>작성일: ${post.date}</p>
-                    </div>
-                `;
+            <img src="https://via.placeholder.com/400x225" alt="${post.title}">
+            <div class="title">${post.title}</div>
+            <div class="additional-info">
+                <h3>${post.title}</h3>
+                <p>${getContentPreview(post.content)}</p>
+                <p>카테고리: ${post.category}</p>
+                <p>작성일: ${post.date}</p>
+            </div>
+        `;
                 postElement.addEventListener('click', () => {
                     window.location.href = `orm_html/post-detail.html?id=${post.id}`;
                 });
@@ -73,22 +100,24 @@
             });
         }
 
-        function init() {
-            renderPosts(blogPosts);
+        async function init() {
+            const posts = await fetchPosts();
+            renderPosts(posts);
         }
 
         categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', async () => {
                 const category = button.dataset.category;
-                const posts = getPosts(category);
+                const posts = await getPosts(category);
                 renderPosts(posts);
             });
         });
 
-        searchButton.addEventListener('click', () => {
+        searchButton.addEventListener('click', async () => {
             const searchTerm = searchInput.value.toLowerCase();
-            const searchResults = blogPosts.filter(post => 
-                post.title.toLowerCase().includes(searchTerm) || 
+            const allPosts = await fetchPosts();
+            const searchResults = allPosts.filter(post =>
+                post.title.toLowerCase().includes(searchTerm) ||
                 post.content.toLowerCase().includes(searchTerm)
             );
             renderPosts(searchResults);
@@ -97,4 +126,5 @@
         init();
     </script>
 </body>
+
 </html>

@@ -113,3 +113,14 @@ h1 {
 .hidden {
 	display: none;
 }
+.grid-item .additional-info p {
+    max-height: 4.5em;  /* 약 3줄 정도의 높이 (1.5em * 3) */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: box;
+    line-clamp: 3;
+    box-orient: vertical;
+}
