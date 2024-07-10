@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>방명록</title>
     <link rel="stylesheet" href="GuestBook.css">
 </head>
-<body>
-    <h1>Guest Book</h1>
-    
-    <div id="guestbook-form">
-        
-        <form id="entry-form">
-            <div>
-                <label for="name">이름:</label>
-                <input type="text" id="name" required>
-            </div>
-            <div>
-                <label for="message">메시지:</label>
-                <textarea id="message" required></textarea>
-            </div>
-            <button type="submit">등록</button>
-			<a href="index.html"  class="button" >메인</a>
-        </form>
-    </div>
-	
-	
 
-    <div id="guestbook-entries">
-        <h2>방명록 내용</h2>
-        <!-- 여기에 방명록 항목들이 추가됩니다 -->
+<body>
+    <div class="container">
+        <h1>Guest Book</h1>
+
+        <div id="guestbook-form">
+            <form id="entry-form">
+                <div class="input-container">
+                    <label for="name">이름:</label>
+                    <input type="text" id="name" required maxlength="20">
+                    <span class="char-count" id="name-count">0/20</span>
+                </div>
+                <div class="input-container">
+                    <label for="message">메시지:</label>
+                    <textarea id="message" required maxlength="200"></textarea>
+                    <span class="char-count" id="message-count">0/200</span>
+                </div>
+                <button type="submit">등록</button>
+                <a href="index.html" class="button">메인</a>
+            </form>
+        </div>
+
+        <div id="guestbook-entries">
+            <h2>방명록 내용</h2>
+            <!-- 여기에 방명록 항목들이 추가됩니다 -->
+        </div>
     </div>
 
     <script>
         const entryForm = document.getElementById('entry-form');
         const guestbookEntries = document.getElementById('guestbook-entries');
+        const nameInput = document.getElementById('name');
+        const messageInput = document.getElementById('message');
+        const nameCount = document.getElementById('name-count');
+        const messageCount = document.getElementById('message-count');
+
+        function updateCharCount(input, countElement, maxLength) {
+            const currentLength = input.value.length;
+            countElement.textContent = `${currentLength}/${maxLength}`;
+        }
+
+        nameInput.addEventListener('input', () => updateCharCount(nameInput, nameCount, 20));
+        messageInput.addEventListener('input', () => updateCharCount(messageInput, messageCount, 200));
 
         // 로컬 스토리지에서 기존 항목 불러오기
         let entries = JSON.parse(localStorage.getItem('guestbookEntries')) || [];
@@ -48,17 +63,17 @@
                 entryElement.innerHTML = `
                     <strong>${entry.name}</strong> (${entry.timestamp})
                     <p>${entry.message}</p>
-					 <button class="delete-btn" data-index="${index}">삭제</button>
+                    <button class="delete-btn" data-index="${index}">삭제</button>
                 `;
                 guestbookEntries.appendChild(entryElement);
             });
         }
 
         // 새 항목 추가
-        entryForm.addEventListener('submit', function(e) {
+        entryForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
+            const name = nameInput.value;
+            const message = messageInput.value;
             const timestamp = new Date().toLocaleString();
 
             entries.push({ name, message, timestamp });
@@ -66,9 +81,11 @@
 
             displayEntries();
             entryForm.reset();
+            nameCount.textContent = '0/20';
+            messageCount.textContent = '0/200';
         });
 
-		guestbookEntries.addEventListener('click', function(e) {
+        guestbookEntries.addEventListener('click', function (e) {
             if (e.target.classList.contains('delete-btn')) {
                 const index = e.target.dataset.index;
                 if (confirm('정말로 이 항목을 삭제하시겠습니까?')) {
@@ -78,12 +95,10 @@
                 }
             }
         });
-		
-
-
 
         // 초기 항목 표시
         displayEntries();
     </script>
 </body>
+
 </html>

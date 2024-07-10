@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <!-- 공통 CSS 파일 연결 -->
     <link rel="stylesheet" href="blog/CSS/common.css">
 </head>
+
 <body>
     <!-- 눈이 내리는 효과를 위한 컨테이너 -->
     <div class="sky" id="sky"></div>
@@ -24,12 +26,12 @@
             <a href="mailto:nathanlyj@gmail.com" class="icon" title="이메일 보내기">📧</a>
             <a href="blog/frontend/index.html" class="icon">🌐</a>
             <a href="https://github.com/nathanLYJ">
-                <img src="./icons/profile.gif" class="icon" alt="Nathan LYJ의 프로필"/>
+                <img src="./icons/profile.gif" class="icon" alt="Nathan LYJ의 프로필" />
             </a>
             <a href="" class="icon">📘</a>
             <a href="" class="icon">👥</a>
-            <a href="blog/GuestBook/index.html"> 
-                <img src="./icons/note.gif" class="icon" alt="방명록"/>
+            <a href="blog/GuestBook/index.html">
+                <img src="./icons/note.gif" class="icon" alt="방명록" />
             </a>
         </div>
     </div>
@@ -79,19 +81,19 @@
         setInterval(createSnow, 200);
 
         // 텍스트 회전 효과 클래스
-        var TxtRotate = function(el, toRotate, period) {
+        var TxtRotate = function (el, toRotate, period) {
             // ... (기존 코드 유지)
         };
 
-        TxtRotate.prototype.tick = function() {
+        TxtRotate.prototype.tick = function () {
             // ... (기존 코드 유지)
         };
 
         // 페이지 로드 시 실행되는 함수
-        window.onload = function() {
+        window.onload = function () {
             createWordCloud();
             var elements = document.getElementsByClassName('txt-rotate');
-            for (var i=0; i<elements.length; i++) {
+            for (var i = 0; i < elements.length; i++) {
                 var toRotate = elements[i].getAttribute('data-rotate');
                 var period = elements[i].getAttribute('data-period');
                 if (toRotate) {
@@ -101,4 +103,5 @@
         };
     </script>
 </body>
+
 </html>
