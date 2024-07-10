@@ -2,24 +2,31 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const posts = await Post.find();
-    res.json(posts);
+    const post = await Post.findById(req.params.id);
+    if (post == null) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    res.json(post);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 });
-
-router.get('/:category', async (req, res) => {
+router.get('/:id/preview', async (req, res) => {
   try {
-    const category = req.params.category;
-    const posts = category === 'all' 
-      ? await Post.find()
-      : await Post.find({ category: category });
-    res.json(posts);
+    const post = await Post.findById(req.params.id);
+    if (post == null) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    // 미리보기용 간단한 데이터만 전송
+    const preview = {
+      title: post.title,
+      content: post.content.substring(0, 200) + '...' // 처음 200자만 전송
+    };
+    res.json(preview);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 });
 

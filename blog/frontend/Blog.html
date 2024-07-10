@@ -21,7 +21,6 @@
         </nav>
     </header>
     <main>
-        <h1>최신 글</h1>
         <div id="search-container">
             <input type="text" id="search-input" placeholder="검색어를 입력하세요">
             <button id="search-button">검색</button>
@@ -32,99 +31,112 @@
             <button class="category-btn" data-category="movie">영화</button>
             <button class="category-btn" data-category="review">리뷰</button>
         </div>
+
+        <h1>최신 글</h1>
+        <!-- 검색 및 카테고리 필터 -->
+        <div id="preview-container" class="preview-overlay">
+            <h2 id="preview-title"></h2>
+        </div>
         <div id="post-grid" class="grid">
             <!-- 포스트들이 여기에 동적으로 추가됩니다 -->
         </div>
+
     </main>
+</body>
 
-    <!-- 블로그 글 데이터를 포함하는 JavaScript 파일 -->
-    <script src="blog-posts.js"></script>
 
-    <script>
-        async function fetchPosts() {
-            try {
-                const response = await fetch('/api/posts');  // 실제 API 엔드포인트로 변경해야 합니다
-                if (!response.ok) {
-                    throw new Error('서버에서 데이터를 가져오는데 실패했습니다');
-                }
-                return await response.json();
-            } catch (error) {
-                console.error('Error fetching posts:', error);
-                return [];
+<script>
+    async function fetchPosts() {
+        try {
+            const response = await fetch('/api/posts');  // 실제 API 엔드포인트로 변경해야 합니다
+            if (!response.ok) {
+                throw new Error('서버에서 데이터를 가져오는데 실패했습니다');
             }
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+            return [];
         }
-        const postGrid = document.getElementById('post-grid');
-        const searchInput = document.getElementById('search-input');
-        const searchButton = document.getElementById('search-button');
-        const categoryButtons = document.querySelectorAll('.category-btn');
+    }
+    const postGrid = document.getElementById('post-grid');
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    const categoryButtons = document.querySelectorAll('.category-btn');
 
-        async function getPosts(category = 'all') {
-            const posts = await fetchPosts();
-            if (category === 'all') {
-                return posts;
-            }
-            return posts.filter(post => post.category === category);
+    async function getPosts(category = 'all') {
+        const posts = await fetchPosts();
+        if (category === 'all') {
+            return posts;
         }
+        return posts.filter(post => post.category === category);
+    }
 
-        function getContentPreview(content, maxLength = 100) {
-            if (content.length <= maxLength) return content;
-            let trimmedContent = content.substr(0, maxLength);
-            let lastSpaceIndex = trimmedContent.lastIndexOf(' ');
-            if (lastSpaceIndex > maxLength * 0.8) { // 마지막 공백이 너무 뒤에 있지 않은 경우에만 자름
-                trimmedContent = trimmedContent.substr(0, lastSpaceIndex);
-            }
-            return trimmedContent + '...';
+    function getContentPreview(content, maxLength = 100) {
+        if (content.length <= maxLength) return content;
+        let trimmedContent = content.substr(0, maxLength);
+        let lastSpaceIndex = trimmedContent.lastIndexOf(' ');
+        if (lastSpaceIndex > maxLength * 0.8) { // 마지막 공백이 너무 뒤에 있지 않은 경우에만 자름
+            trimmedContent = trimmedContent.substr(0, lastSpaceIndex);
         }
+        return trimmedContent + '...';
+    }
 
 
+    function renderPosts(posts) {
+    postGrid.innerHTML = '';
+    const previewContainer = document.getElementById('preview-container');
+    const previewTitle = document.getElementById('preview-title');
 
-        function renderPosts(posts) {
-            postGrid.innerHTML = '';
-            posts.forEach(post => {
-                const postElement = document.createElement('div');
-                postElement.className = 'grid-item';
-                postElement.innerHTML = `
+    posts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.className = 'grid-item';
+        postElement.innerHTML = `
             <img src="https://via.placeholder.com/400x225" alt="${post.title}">
             <div class="title">${post.title}</div>
-            <div class="additional-info">
-                <h3>${post.title}</h3>
-                <p>${getContentPreview(post.content)}</p>
-                <p>카테고리: ${post.category}</p>
-                <p>작성일: ${post.date}</p>
-            </div>
         `;
-                postElement.addEventListener('click', () => {
-                    window.location.href = `orm_html/post-detail.html?id=${post.id}`;
-                });
-                postGrid.appendChild(postElement);
-            });
-        }
+        
+        postElement.addEventListener('mouseover', () => {
+            previewTitle.textContent = post.title;
+            previewContainer.style.display = 'block';
+        });
 
-        async function init() {
-            const posts = await fetchPosts();
+        postElement.addEventListener('mouseout', () => {
+            previewContainer.style.display = 'none';
+        });
+
+        postElement.addEventListener('click', () => {
+            window.location.href = `orm_html/post-detail.html?id=${post.id}`;
+        });
+
+        postGrid.appendChild(postElement);
+    });
+}
+
+    async function init() {
+        const posts = await fetchPosts();
+        renderPosts(posts);
+    }
+
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const category = button.dataset.category;
+            const posts = await getPosts(category);
             renderPosts(posts);
-        }
-
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', async () => {
-                const category = button.dataset.category;
-                const posts = await getPosts(category);
-                renderPosts(posts);
-            });
         });
+    });
 
-        searchButton.addEventListener('click', async () => {
-            const searchTerm = searchInput.value.toLowerCase();
-            const allPosts = await fetchPosts();
-            const searchResults = allPosts.filter(post =>
-                post.title.toLowerCase().includes(searchTerm) ||
-                post.content.toLowerCase().includes(searchTerm)
-            );
-            renderPosts(searchResults);
-        });
+    searchButton.addEventListener('click', async () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const allPosts = await fetchPosts();
+        const searchResults = allPosts.filter(post =>
+            post.title.toLowerCase().includes(searchTerm) ||
+            post.content.toLowerCase().includes(searchTerm)
+        );
+        renderPosts(searchResults);
+    });
 
-        init();
-    </script>
-</body>
+    init();
+</script>
+
 
 </html>
