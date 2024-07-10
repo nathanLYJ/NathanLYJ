@@ -26,7 +26,7 @@
         </div>
         <div id="category-filter">
             <button class="category-btn" data-category="all">전체</button>
-            <button class="category-btn" data-category="series">시리즈</button>
+            <button class="category-btn" data-category="general">일반</button>
             <button class="category-btn" data-category="movie">영화</button>
             <button class="category-btn" data-category="review">리뷰</button>
         </div>
@@ -34,25 +34,21 @@
             <!-- 포스트들이 여기에 동적으로 추가됩니다 -->
         </div>
     </main>
+    
+    <!-- 블로그 글 데이터를 포함하는 JavaScript 파일 -->
+    <script src="blog-posts.js"></script>
+    
     <script>
-        const API_URL = 'http://localhost:3000/api/posts';
         const postGrid = document.getElementById('post-grid');
         const searchInput = document.getElementById('search-input');
         const searchButton = document.getElementById('search-button');
         const categoryButtons = document.querySelectorAll('.category-btn');
 
-        async function fetchPosts(category = 'all') {
-            try {
-                const response = await fetch(`${API_URL}/${category}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return await response.json();
-            } catch (error) {
-                console.error('Error fetching posts:', error);
-                alert('포스트를 가져오는 데 실패했습니다. 나중에 다시 시도해주세요.');
-                return [];
+        function getPosts(category = 'all') {
+            if (category === 'all') {
+                return blogPosts;
             }
+            return blogPosts.filter(post => post.category === category);
         }
 
         function renderPosts(posts) {
@@ -61,34 +57,37 @@
                 const postElement = document.createElement('div');
                 postElement.className = 'grid-item';
                 postElement.innerHTML = `
-                    <img src="/api/placeholder/400/225" alt="${post.title}">
+                    <img src="https://via.placeholder.com/400x225" alt="${post.title}">
                     <div class="title">${post.title}</div>
                     <div class="additional-info">
                         <h3>${post.title}</h3>
                         <p>${post.content}</p>
+                        <p>카테고리: ${post.category}</p>
+                        <p>작성일: ${post.date}</p>
                     </div>
                 `;
+                postElement.addEventListener('click', () => {
+                    window.location.href = `orm_html/post-detail.html?id=${post.id}`;
+                });
                 postGrid.appendChild(postElement);
             });
         }
 
-        async function init() {
-            const posts = await fetchPosts();
-            renderPosts(posts);
+        function init() {
+            renderPosts(blogPosts);
         }
 
         categoryButtons.forEach(button => {
-            button.addEventListener('click', async () => {
+            button.addEventListener('click', () => {
                 const category = button.dataset.category;
-                const posts = await fetchPosts(category);
+                const posts = getPosts(category);
                 renderPosts(posts);
             });
         });
 
-        searchButton.addEventListener('click', async () => {
+        searchButton.addEventListener('click', () => {
             const searchTerm = searchInput.value.toLowerCase();
-            const allPosts = await fetchPosts();
-            const searchResults = allPosts.filter(post => 
+            const searchResults = blogPosts.filter(post => 
                 post.title.toLowerCase().includes(searchTerm) || 
                 post.content.toLowerCase().includes(searchTerm)
             );
