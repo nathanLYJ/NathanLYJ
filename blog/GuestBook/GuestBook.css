@@ -1,0 +1,223 @@
+body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+h1 { text-align: center; }
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+/* Container styles */
+.container {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(26, 26, 26, 0.7);
+    border-radius: 50px;
+    box-shadow: 20px 20px 60px #000000, -20px -20px 60px #333333;
+    padding: 50px;
+    text-align: center;
+    max-width: 80%;
+    margin: 20px auto;
+}
+
+/* Typography */
+h1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.name {
+    color: #ff0000;
+}
+
+/* Snow animation */
+.snow {
+    color: white;
+    position: absolute;
+    animation: fall linear;
+    opacity: 0.7;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+#snow-pile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+/* Form styles */
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+/* Button styles */
+.button, form button, a button {
+    display: inline-block;
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.button:hover, form button:hover, a button:hover {
+    background-color: #cc0000;
+}
+
+/* Social icon styles */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    background-color: rgba(26, 26, 26, 0.7);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 15px #000000, -5px -5px 15px #333333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.icon:hover {
+    box-shadow: inset 5px 5px 10px #000000, inset -5px -5px 10px #333333;
+}
+
+/* Link styles */
+a {
+    text-decoration: none;
+}
+
+/* Guestbook styles */
+#guestbook-form { margin-bottom: 20px; }
+#guestbook-entries { border-top: 1px solid #ccc; padding-top: 20px; }
+.entry { margin-bottom: 10px; padding: 10px; background-color: #202020; }
+.delete-btn {
+    display: none;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.entry:hover .delete-btn {
+    display: inline-block;
+}
+
+/* Main page specific styles */
+#txt-rotate {
+    min-height: 1.2em;
+    display: inline-block;
+}
+.wrap {
+    border-right: 0.08em solid #fff;
+    padding-right: 5px;
+}
+
+/* Blog page specific styles */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+.grid-item {
+    background-color: #333333;
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.grid-item .title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.grid-item .additional-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    overflow: auto;
+}
+.grid-item:hover .additional-info {
+    opacity: 1;
+}
+#search-container {
+    margin-bottom: 20px;
+}
+#category-filter {
+    margin-bottom: 20px;
+}
+.hidden {
+    display: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .nav-links a {
+        font-size: 0.9rem;
+        margin-left: 1rem;
+    }
+}
