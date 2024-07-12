@@ -10,111 +10,141 @@
 </head>
 
 <body>
-    <!-- 눈이 내리는 효과를 위한 컨테이너 -->
-    <div class="sky" id="sky"></div>
-    <!-- 눈이 쌓이는 효과를 위한 컨테이너 -->
-    <div id="snow-pile"></div>
-    <!-- 메인 컨텐츠 컨테이너 -->
-     
-    <div class="container">
-        <p>Hi. I'm</p>
-        <h1>NathanLYJ</h1>
-        <!-- 텍스트 회전 효과를 위한 요소 -->
-        <h1>
-            <span id="txt-rotate" data-period="2000" data-rotate='["Jekyll Theme", "scroll down for more."]'></span>
-        </h1>
-        <!-- 소셜 아이콘 링크 -->
-        <div class="social-icons">
-            <a href="https://github.com/nathanLYJ">
-                <img src="./icons/profile.gif" class="icon" alt="Nathan LYJ의 프로필"/>
-                <span class="icon-description">Profile</span>
-            </a>
-            <a href="blog/frontend/Blog.html">
-                <img src="./icons/blog.gif" class="icon" alt="블로그"/>
-                <span class="icon-description">Blog</span>
-            </a>
-            <a href="x" >
-                <img src="./icons/document.gif" class="icon" alt="내 작품"/>
-                <span class="icon-description">Works</span>
-            </a>
-            <a href="x" >
-                <img src="./icons/future.gif" class="icon" alt="도우미"/>
-                <span class="icon-description">Collaborations</span>
-            </a>
-            <a href="mailto:nathanlyj@gmail.com">
-                <img src="./icons/mail.gif" class="icon" alt="메일 보내기" />
-                <span class="icon-description">Mail</span>
-           </a>
-            <a href="blog/GuestBook/GuestBook.html">
-                <img src="./icons/note.gif" class="icon" alt="방명록" />
-                <span class="icon-description">Guestbook</span>
-            </a>
+    <div class="background-container">
+        <div class="sky" id="sky"></div>
+        <div class="container">
+            <p>Hi. I'm</p>
+            <h1>NathanLYJ</h1>
+            <!-- 텍스트 회전 효과를 위한 요소 -->
+            <h1>
+                <span id="txt-rotate" data-period="2000" data-rotate='["Keep", "growing!"]'></span>
+            </h1>
+            <!-- 소셜 아이콘 링크 -->
+            <div class="social-icons">
+                <a href="https://github.com/nathanLYJ">
+                    <img src="./icons/profile.gif" class="icon" alt="Nathan LYJ의 프로필" />
+                    <span class="icon-description">Profile</span>
+                </a>
+                <a href="blog/frontend/Blog.html">
+                    <img src="./icons/blog.gif" class="icon" alt="블로그" />
+                    <span class="icon-description">Blog</span>
+                </a>
+                <a href="x">
+                    <img src="./icons/document.gif" class="icon" alt="내 작품" />
+                    <span class="icon-description">Works</span>
+                </a>
+                <a href="x">
+                    <img src="./icons/future.gif" class="icon" alt="도우미" />
+                    <span class="icon-description">Collaborations</span>
+                </a>
+                <a href="mailto:nathanlyj@gmail.com">
+                    <img src="./icons/mail.gif" class="icon" alt="메일 보내기" />
+                    <span class="icon-description">Mail</span>
+                </a>
+                <a href="blog/GuestBook/GuestBook.html">
+                    <img src="./icons/note.gif" class="icon" alt="방명록" />
+                    <span class="icon-description">Guestbook</span>
+                </a>
+            </div>    
         </div>
+        <div id="snow-pile"></div>
     </div>
 
+
     <script>
-        // 눈 효과를 위한 코딩 용어 배열
-        const codingTerms = ['var', 'let', 'const', 'function', 'if', 'else', 'for', 'while', 'return', 'class', 'import', 'export', '{}', '[]', '()', '=>', '===', '!==', '&&', '||'];
+        // 페이지 로드 후 눈 효과 시작
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                // 눈 효과 관련 코드를 여기로 이동
+                const codingTerms = ['var', 'let', 'const', 'function', 'if', 'else', 'for', 'while', 'return', 'class', 'import', 'export', '{}', '[]', '()', '=>', '===', '!==', '&&', '||'];
 
-        // 눈 생성 함수
-        function createSnow() {
-            const sky = document.getElementById('sky');
-            const snow = document.createElement('div');
-            snow.className = 'snow';
-            snow.style.left = `${Math.random() * 100}%`;
-            snow.textContent = codingTerms[Math.floor(Math.random() * codingTerms.length)];
-            snow.style.animationDuration = `${Math.random() * 5 + 5}s`;
-            sky.appendChild(snow);
+                function createSnow() {
+                    const sky = document.getElementById('sky');
+                    const snow = document.createElement('div');
+                    snow.className = 'snow';
+                    snow.style.left = `${Math.random() * 100}%`;
+                    snow.textContent = codingTerms[Math.floor(Math.random() * codingTerms.length)];
+                    snow.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                    sky.appendChild(snow);
 
-            snow.addEventListener('animationend', () => {
-                snow.remove();
-                addToSnowPile(snow.textContent);
-            });
-        }
+                    snow.addEventListener('animationend', () => {
+                        snow.remove();
+                        addToSnowPile(snow.textContent);
+                    });
+                }
+                // 눈 쌓기 함수
+                function addToSnowPile(text) {
+                    const snowPile = document.getElementById('snow-pile');
+                    const snowFlake = document.createElement('span');
+                    snowFlake.textContent = text;
+                    const fontSize = Math.floor(Math.random() * 9) + 12;
+                    snowFlake.style.fontSize = `${fontSize}px`;
+                    snowPile.appendChild(snowFlake);
 
-        // 눈 쌓기 함수
-        function addToSnowPile(text) {
-            const snowPile = document.getElementById('snow-pile');
-            const snowFlake = document.createElement('span');
-            snowFlake.textContent = text;
-            snowFlake.style.fontSize = '10px';
-            snowFlake.style.color = 'rgba(255, 255, 255, 0.7)';
-            snowFlake.style.margin = '0 2px';
-            snowPile.appendChild(snowFlake);
+                    if (snowPile.children.length > 100) {
+                        snowPile.removeChild(snowPile.firstChild);
+                    }
 
-            if (snowPile.children.length > 100) {
-                snowPile.removeChild(snowPile.firstChild);
-            }
+                    setTimeout(() => {
+                        snowFlake.style.opacity = '0';
+                        snowFlake.style.transition = 'opacity 2s';
+                        setTimeout(() => snowFlake.remove(), 2000);
+                    }, 3000);
+                }
+                // 눈 생성 시작
+                setInterval(createSnow, 200);
+            }, 1000); // 1초 후에 눈 효과 시작
+        });
 
-            setTimeout(() => {
-                snowFlake.style.opacity = '0';
-                snowFlake.style.transition = 'opacity 2s';
-                setTimeout(() => snowFlake.remove(), 2000);
-            }, 3000);
-        }
 
-        // 눈 생성 간격 설정
-        setInterval(createSnow, 200);
 
         // 텍스트 회전 효과 클래스
         var TxtRotate = function (el, toRotate, period) {
-            // ... (기존 코드 유지)
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 2000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
         };
 
         TxtRotate.prototype.tick = function () {
-            // ... (기존 코드 유지)
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+
+            if (this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+            var that = this;
+            var delta = 300 - Math.random() * 100;
+
+            if (this.isDeleting) { delta /= 2; }
+
+            if (!this.isDeleting && this.txt === fullTxt) {
+                delta = this.period;
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+                this.isDeleting = false;
+                this.loopNum++;
+                delta = 500;
+            } setTimeout(function () {
+                that.tick();
+            }, delta);
         };
 
         // 페이지 로드 시 실행되는 함수
         window.onload = function () {
-            createWordCloud();
-            var elements = document.getElementsByClassName('txt-rotate');
-            for (var i = 0; i < elements.length; i++) {
-                var toRotate = elements[i].getAttribute('data-rotate');
-                var period = elements[i].getAttribute('data-period');
-                if (toRotate) {
-                    new TxtRotate(elements[i], JSON.parse(toRotate), period);
-                }
+            var element = document.getElementById('txt-rotate');
+            var toRotate = element.getAttribute('data-rotate');
+            var period = element.getAttribute('data-period');
+            if (toRotate) {
+                new TxtRotate(element, JSON.parse(toRotate), period);
             }
         };
     </script>

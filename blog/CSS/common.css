@@ -1,6 +1,8 @@
 /* Reset and global styles */
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-body, html {
+
+body,
+html {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -10,7 +12,7 @@ body, html {
     overflow: hidden;
     align-items: center;
     justify-content: center;
-    
+
 }
 
 /* Container styles */
@@ -18,12 +20,33 @@ body, html {
     position: relative;
     z-index: 1;
     background-color: rgba(44, 43, 43, 0.7);
-    border-radius: 30px;
+    border-radius: 80px;
     padding: 40px;
     text-align: center;
     max-width: 80%;
     margin: 100px auto;
 }
+.container::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    right: -100%;
+    bottom: -100%;
+    background:
+        linear-gradient(to bottom, transparent, #0ff),
+        linear-gradient(to left, transparent, #f0f);
+    background-size: 300% 300%;
+    animation: backgroundMove 10s ease infinite;
+    z-index: -1;
+    opacity: 0.1;
+}
+@keyframes backgroundMove {
+    0% {background-position: 0% 0%;}
+    50% {background-position: 25% 25%;}
+    100% {background-position: 0% 0%;}
+}
+
 
 /* Typography */
 h1 {
@@ -32,6 +55,7 @@ h1 {
     text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
     animation: flicker 1.5s infinite alternate;
 }
+
 p {
     font-size: 36px;
     color: #ff00ff;
@@ -39,6 +63,7 @@ p {
     transform: skew(-5deg);
     animation: glitch 3s infinite;
 }
+
 .name {
     color: #ff0000;
     font-size: 70px;
@@ -56,81 +81,59 @@ p {
 }
 
 @keyframes fall {
-    to {
-        transform: translateY(100vh);
-    }
-}
-@keyframes flicker {
-    0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
-    }
-    20%, 24%, 55% {
-        text-shadow: none;
-    }
-}
-@keyframes glitch {
-    0% {
-        transform: skew(-5deg);
-    }
-    5% {
-        transform: skew(5deg);
-    }
-    10% {
-        transform: skew(-5deg);
-    }
-    15% {
-        transform: skew(5deg);
-    }
-    20% {
-        transform: skew(0deg);
-    }
-    100% {
-        transform: skew(0deg);
-    }
-}
-.container::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    right: -50%;
-    bottom: -50%;
-    background: 
-        linear-gradient(to bottom, transparent, #0ff),
-        linear-gradient(to left, transparent, #f0f);
-    background-size: 300% 300%;
-    animation: backgroundMove 10s ease infinite;
-    z-index: -1;
-    opacity: 0.1;
+    to {transform: translateY(100vh);}
 }
 
-@keyframes backgroundMove {
-    0% {
-        background-position: 0% 0%;
+@keyframes flicker {
+    0%,18%,22%,25%,53%,57%,100% {
+        text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
     }
-    50% {
-        background-position: 100% 100%;
-    }
-    100% {
-        background-position: 0% 0%;
-    }
+    20%,24%,55% {text-shadow: none;}
 }
+
+@keyframes glitch {
+    0% {transform: skew(-5deg);}
+    5% {transform: skew(5deg);}
+    10% {transform: skew(-5deg);}
+    15% {transform: skew(5deg);}
+    20% {transform: skew(0deg);}
+    100% {transform: skew(0deg);}
+}
+
 
 #snow-pile {
     position: fixed;
-    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 50px;
+    right: 0;
+    bottom: 0;
+    height: 20vh;
+    overflow: hidden;
+    z-index: 2;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-end;
-    overflow: hidden;
+    align-content: flex-end;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.sky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 20vh;
+    z-index: 1;
+    pointer-events: none;
+}
+#snow-pile span {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 2px;
+    line-height: 1;
 }
 
 /* Social icons and links styles */
 .social-icons {
     display: flex;
+    
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 20px;
@@ -142,7 +145,6 @@ p {
     align-items: center;
     text-decoration: none;
     margin: 0 10px;
-    color: #ffffff;
 }
 
 .icon {
@@ -175,8 +177,36 @@ p {
 
 /* Main page specific styles */
 #txt-rotate {
-    min-height: 1.2em;
     display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+    color: #FFD700; /* 골드 색상 */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 10px;
+    background: linear-gradient(45deg, #333, #666);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#txt-rotate > .wrap {
+    border-right: 0.08em solid #FFD700;
+    animation: blink-caret 0.75s step-end infinite,
+               colorChange 4s infinite;
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #FFD700 }
+}
+@keyframes colorChange {
+    0% { color: #FFD700; } /* 골드 */
+    33% { color: #FF6347; } /* 토마토 */
+    66% { color: #40E0D0; } /* 터콰이즈 */
+    100% { color: #FFD700; } /* 골드로 돌아옴 */
+}
+
+#txt-rotate:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255,215,0,0.5);
 }
 
 .wrap {
@@ -213,7 +243,7 @@ p {
     left: 0;
     right: 0;
     padding: 1rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     font-size: 1.2rem;
     font-weight: bold;
 }
@@ -258,6 +288,7 @@ p {
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
+
     .nav-links a {
         font-size: 0.9rem;
         margin-left: 1rem;
