@@ -11,9 +11,9 @@
 <body>
     <header>
         <nav>
-            <div class="logo">MYLIFEFLIX</div>
+            <div class="logo">CyberCanvas</div>
             <div class="nav-links">
-                <a href="#">홈</a>
+                <a href="../../index.html">홈</a>
                 <a href="#">카테고리</a>
                 <a href="#">인기 글</a>
                 <a href="#">내 글</a>
@@ -21,13 +21,41 @@
         </nav>
     </header>
     <main>
-        <h1>최신 글</h1>
+        <h1>News:</h1>
         <div id="post-grid" class="grid">
             <div class="post">
-                <a href="orm_html/post-detail.html"><img src="/orm_html/img/포스터 1번사진.PNG" alt="포스트 1 이미지"></a>          
+                <a href="orm_html/post-detail.html"><img src="orm_html/img/포스터 1번사진.PNG" alt="포스트 1 이미지"></a>
             </div>
         </div>
+        <button id="likeButton" class="like-btn">
+            <i class="fas fa-heart"></i>
+            <span class="like-count">0</span>
+        </button>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const likeButton = document.getElementById('likeButton');
+            const likeCount = likeButton.querySelector('.like-count');
+            let count = 0;
+
+            likeButton.addEventListener('click', function () {
+                count++;
+                likeCount.textContent = count;
+                likeButton.classList.add('active');
+
+                // 애니메이션 효과
+                likeButton.animate([
+                    { transform: 'scale(1)' },
+                    { transform: 'scale(1.2)' },
+                    { transform: 'scale(1)' }
+                ], {
+                    duration: 300,
+                    easing: 'ease-in-out'
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
