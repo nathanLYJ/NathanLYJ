@@ -1,0 +1,233 @@
+/* 글로벌 스타일 */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+:root {
+    --background: #29503a;
+    --surface: #2c2c2c;
+    --primary: #ee8641;
+    --secondary: #50c878;
+    --text: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background);
+    font-family: 'Arial', sans-serif;
+    color: #94b697;
+    font-size: 0.8em;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 헤더 스타일 */
+header {
+    background: linear-gradient(45deg, #2b2b2b, #1a1a1a);
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 1.5rem;
+}
+
+/* 메인 콘텐츠 스타일 */
+main {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* 사용자 소개 섹션 */
+.user-intro {
+    flex: 230px 0;
+    text-align: center;
+    background-color: #485e51;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.user-photo-container {
+    width: 210px;
+    height: 210px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(145deg, #ffffff, #ffffff);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-photo {
+    width: 140px;
+    height: 230px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20%;
+    border: 4px solid rgb(255, 255, 255);
+}
+
+.user-name {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #f7f3da;
+}
+
+.user-signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5em;
+    color: #94b697;
+    margin-bottom: 15px;
+}
+
+.user-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #94b697;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+.icons:hover {
+    color: #ddfecb; 
+}
+
+.icons img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    
+}
+
+/* 스킬 섹션 */
+.user-skills {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #f7f3da;
+    font-size: 20px;
+    text-align: left;
+}
+
+.skill-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: center;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 5px;
+    background-color: #4b7c71;
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 5px 10px;
+}
+
+/* 사용자 상세 정보 섹션 */
+.user-details {
+    flex: 1;
+    background-color: #f7f3da;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.user-description {
+    text-align: left;
+    text-indent: 0.4em;
+}
+.post {
+    display: inline-block;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+/* 포스터 효과 */
+.post:hover {
+    transform: translateY(-5px);
+}
+
+.post img {
+    width: 270.96px;
+    height: 150px;
+    transition: transform 0.3s ease;
+}
+
+.post:hover img {
+    transform: scale(1.05);
+}
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    .user-contact {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .icons {
+        width: calc(50% - 10px);
+    }
+}

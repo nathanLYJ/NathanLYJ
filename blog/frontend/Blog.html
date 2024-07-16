@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My first blog</title>
-    <link rel="stylesheet" href="frontend.css">
+    <title>유원길의 포트폴리오</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -20,42 +20,93 @@
             </div>
         </nav>
     </header>
+
     <main>
-        <h1>News:</h1>
-        <div id="post-grid" class="grid">
-            <div class="post">
-                <a href="orm_html/post-detail.html"><img src="orm_html/img/포스터 1번사진.PNG" alt="포스트 1 이미지"></a>
+        <section class="user-intro">
+            <div class="user-photo-container">
+                <img src="./image/KakaoTalk_20240228_132509094.jpg" alt="유원길 프로필 사진" class="user-photo">
             </div>
-        </div>
-        <button id="likeButton" class="like-btn">
-            <i class="fas fa-heart"></i>
-            <span class="like-count">0</span>
-        </button>
+            <h1 class="user-name">유원길</h1>
+            <p class="user-signature">Nathan liu</p>
+            <div class="user-contact">
+                <a href="mailto:nathanlyj@gamil.com" class="icons"><img src="./image/email.png"
+                        alt="이메일">nathanlyj@gamil.com</a>
+                <a href="tel:010" class="icons"><img src="./image/phone-call.png" alt="전화">010.40597667</a>
+                <a href="#" class="icons"><img src="./image/home.png" alt="주소">충북 진천</a>
+                <a href="https://nathanlyj.github.io/NathanLYJ/" class="icons"><img src="./image/blogging.png"
+                        alt="블로그">https://nathanlyj.github.io/NathanLYJ/</a>
+            </div>
+            <div class="user-description">
+                <h2>자기소개</h2>
+                <p>안녕하세요, 저는 기술로 세상을 더 나은 곳으로 만들고자 하는 개발자입니다.
+                <p>커피숍에서 일하던 중 우연히 접한 로봇 바리스타 기사가 제 인생을 바꿨습니다. 그 순간부터 저는 코딩의 세계에 뛰어들어 로봇공학과 AI의 무한한 가능성에 매료되었죠.
+                    저는 기술이 우리 삶을 풍요롭게 만들 수 있다고 믿습니다. </p>
+                <p>새로운 도전을 두려워하지 않으며, 실패는 단지 다른 방법을 찾으라는 신호일 뿐이라고 생각합니다.제 목표는 단순히 뛰어난 개발자가 되는 것이 아닙니다. 장애인을 위한 보조 로봇이나
+                    환경 보호를 위한 AI 시스템 개발 등을 통해 사회에 긍정적인 변화를 가져오고 싶습니다.
+                    팀워크의 힘을 믿으며, 다양한 의견을 경청하고 시너지를 만들어내는 것을 좋아합니다. </p>
+                <p>이 여정은 쉽지 않겠지만, 저는 이미 첫 걸음을 내딛었습니다. 함께 꿈꾸고, 함께 미래를 창조해 나갈 준비가 되어있습니다. 저와 함께할 분들을 기다리고 있겠습니다!</p>
+                <hr>
+            </div>
+            <div class="user-skills">
+                <h2>Skill</h2>
+                <div class="skill-container">
+                    <span class="skill-info">Python</span>
+                    <span class="skill-info">HTML</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="user-details">
+            <h2>News:</h2>
+            <div id="post-grid" class="grid">
+                <div class="post">
+                    <a href="/blog/post/post-detail.html">
+                        <img src="/blog/post/image/캡처.PNG" alt="포스트 1 이미지">
+                    </a>
+                </div>
+                <div class="post">
+                    <a>
+                    </a>
+                </div>
+                <div class="post">
+                    <a>
+                    </a>
+                </div>  
+            </div>
+            <hr>
+            <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter&count_bg=%2394B697&title_bg=%23EE8641&icon=furrynetwork.svg&icon_color=%23000000&title=welcome&edge_flat=false"/></a>
+           
+
+            <h2>글 목록</h2>
+            <table>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>조회수</th>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><a href="/blog/post/post-detail.html"">HTML 태그 정리 table</a></td>
+                    <td>유원길</td>
+                    <td>2024.07.16</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><a href="../../index.html">HTML&자바 Test</a></td>
+                    <td>유원길</td>
+                    <td>2024.07.16</td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
     </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const likeButton = document.getElementById('likeButton');
-            const likeCount = likeButton.querySelector('.like-count');
-            let count = 0;
-
-            likeButton.addEventListener('click', function () {
-                count++;
-                likeCount.textContent = count;
-                likeButton.classList.add('active');
-
-                // 애니메이션 효과
-                likeButton.animate([
-                    { transform: 'scale(1)' },
-                    { transform: 'scale(1.2)' },
-                    { transform: 'scale(1)' }
-                ], {
-                    duration: 300,
-                    easing: 'ease-in-out'
-                });
-            });
-        });
-    </script>
+    <div style="color: white;"> Icons made by 
+        <a href="https://www.freepik.com" title="Freepik" style="color: white;">Freepik </a> from 
+        <a href="https://www.flaticon.com/" title="Flaticon"style="color: white;">www.flaticon.com</a>
+    </div>
 </body>
 
 </html>
