@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			background-color: rgb(15, 14, 14);
+			color: rgb(224, 204, 204);
+		}
+
+		a {
+			color: hsl(150, 83%, 65%);
+			text-decoration: none;
+		}
+
+		strong {
+			color: #f7d129;
+		}
+
+		h1 {
+			color: #ff7b00;
+		}
+
+		h2 {
+			color: #d478f8d7;
+		}
+
+		h3 {
+			color: #aec2e0;
+		}
+
+		code {
+			display: block;
+			font-family: 'Consolas', 'Courier New', monospace;
+			color: #ee8c8c;
+			border-radius: 5px;
+			padding: 10px;
+			font-size: 14px;
+			border: 1px solid #3e3e3e;
+			line-height: 1.5;
+		}
+
+		.keyword {
+			color: hsl(268, 59%, 65%);
+		}
+
+		.string {
+			color: #d66407;
+		}
+
+		.number {
+			color: #b5cea8;
+		}
+
+		.function {
+			color: #dcdcaa;
+		}
+
+		.comment {
+			color: #2e6e10;
+		}
+
+		.operator {
+			color: #d4d4d4;
+		}
+
+		.variable {
+			color: #9fafb8;
+		}
+
+		.class {
+			color: #4ec9b0;
+		}
+
+		.console {
+			color: #70ee76;
+		}
+	</style>
+</head>
+
+<body>
+	<h1><strong> J</strong>ava<strong>S</strong>cript</h1>
+	<h3 id="목차">목차</h3>
+	<ol>
+		<li><a href="#javascript%EC%9D%98-%EA%B8%B0%EC%B4%88">JavaScript의 기초</a></li>
+		<li><a href="#%EC%8B%A4%EC%8A%B5-%EB%8F%84%EC%9A%B0%EB%AF%B8-dom">실습 도우미 DOM</a></li>
+		<li><a href="#javascript-%EB%B3%80%EC%88%98-%EC%84%A0%EC%96%B8-%EB%B0%8F-%EC%82%AC%EC%9A%A9">변수 선언 및 사용</a></li>
+		<li><a href="#%EC%9B%90%EC%8B%9C-%ED%83%80%EC%9E%85">원시 타입</a></li>
+		<li><a href="#%EB%AC%B8%EC%9E%90%EC%97%B4-string">문자열 (String)</a></li>
+		<li><a href="#%EC%88%AB%EC%9E%90-number">숫자 (Number)</a></li>
+		<li><a href="#%EB%85%BC%EB%A6%AC-%EC%9E%90%EB%A3%8C%ED%98%95-boolean">논리 자료형 (Boolean)</a></li>
+		<li><a href="#%ED%95%A8%EC%88%98-function">함수 (Function)</a></li>
+		<li><a href="#%EA%B0%9D%EC%B2%B4-%ED%83%80%EC%9E%85">객체 타입</a></li>
+	</ol>
+	<hr>
+	<h2 id="javascript의-기초">JavaScript의 기초</h2>
+	<h3 id="개요">개요</h3>
+	<ul>
+		<li>1995년 브랜든 아이크에 의해 개발됨</li>
+		<li>주요 역할: HTML과 CSS를 프로그래밍적으로 제어</li>
+	</ul>
+	<h3 id="javascript의-특징">JavaScript의 특징</h3>
+	<ul>
+		<li>웹 브라우저 환경 외에도 다양한 분야에서 활용 (예: 게임 서버)</li>
+		<li>웹어셈블리(WebAssembly)도 웹 프로그래밍에 사용됨</li>
+	</ul>
+	<h3 id="역사">역사</h3>
+	<ul>
+		<li>초기 이름 변경: Mocha &gt; LiveScript &gt; JavaScript</li>
+		<li>현재 ECMAScript 2021(ES12)까지 발표됨</li>
+	</ul>
+	<h3 id="javascript의-주요-기능">JavaScript의 주요 기능</h3>
+	<h3 id="1-데이터-저장">1. 데이터 저장</h3>
+	<ul>
+		<li>변수 선언: var, let, const</li>
+		<li>저장 가능한 데이터 타입:<ul>
+				<li>숫자</li>
+				<li>문자열</li>
+				<li>빈 값 (null, undefined)</li>
+				<li>불리언 (Boolean)</li>
+				<li>배열</li>
+				<li>객체</li>
+			</ul>
+		</li>
+	</ul>
+	<h3 id="2-값-연산">2. 값 연산</h3>
+	<ul>
+		<li>사칙 연산</li>
+		<li>논리 연산</li>
+		<li>조건문</li>
+		<li>반복문</li>
+		<li>자료형의 내장 함수</li>
+	</ul>
+	<h3 id="3-결과-반영">3. 결과 반영</h3>
+	<ul>
+		<li>DOM (Document Object Model) API 사용</li>
+		<li>BOM (Browser Object Model) API 사용</li>
+		<li>사용자 반응 처리</li>
+		<li>연산 결과 값 반영</li>
+	</ul>
+	<h3 id="4-통신">4. 통신</h3>
+	<ul>
+		<li>다른 디바이스와의 통신 기능</li>
+	</ul>
+	<hr>
+	<h2 id="실습-도우미-BOM">실습-도우미-dom</h2>
+	<h3 id="브라우저-오브젝트-모델-bom-관련-명령어">브라우저 오브젝트 모델 (BOM) 관련 명령어</h3>
+	<ul>
+		<li>window.alert(): 브라우저에 알림 메시지를 표시하는 대화 상자를 띄웁니다.</li>
+		<li>window.prompt(): 사용자로부터 입력을 받을 수 있는 대화 상자를 띄웁니다.</li>
+		<li>window.confirm(): 사용자에게 확인이나 취소를 요청하는 대화 상자를 띄웁니다.</li>
+	</ul>
+	<h3 id="콘솔-관련-명령어">콘솔 관련 명령어</h3>
+	<ul>
+		<li>console.log(): 콘솔 창에 일반 메시지를 출력합니다.</li>
+		<li>console.error(): 콘솔 창에 에러 메시지를 출력합니다.</li>
+		<li>console.table(): 콘솔 창에 데이터를 테이블 형태로 출력합니다.</li>
+		예): console.table({&#39;one&#39;:1,&#39;two&#39;:2})
+	</ul>
+	<p>이러한 명령어들은 웹 개발 과정에서 디버깅, 사용자 상호작용, 데이터 시각화 등 다양한 목적으로 사용됩니다.</p>
+	<hr>
+
+	<h2 id="javascript-변수-선언-및-사용">JavaScript 변수 선언 및 사용</h2>
+	<h3 id="변수-선언-방법">변수 선언 방법</h3>
+	<ol>
+		<li>let
+			<ul>
+				<li>변수</li>
+				<li>재할당 가능</li>
+				<li>블록 {} 밖에서 호출 불가</li>
+			</ul>
+		</li>
+		<li>const
+			<ul>
+				<li>상수</li>
+				<li>재할당 불가</li>
+				<li>블록 {} 밖에서 호출 불가</li>
+				<li>현업에서 많이 사용됨</li>
+			</ul>
+		</li>
+		<li>var (권장하지 않음)
+			<ul>
+				<li>함수 스코프 변수</li>
+				<li>재할당 가능</li>
+				<li>블록 {} 밖에서도 호출 가능</li>
+				<li>초기화가 필요 없음</li>
+				<li>선언이 겹쳐 이전 코드에 문제를 일으킬 수 있음</li>
+			</ul>
+	</ol>
+	<h3 id="변수와-값의-관계">변수와 값의 관계</h3>
+	<p>변수는 값의 주소를 가리킵니다:</p>
+	<pre><code class="language-javascript" id="code-text">let x = 10
+let y = x  // y = 10 (y는 x를 참조하는 것이 아님)
+let z = y  // z = 10
+
+y = 20
+console.log(z)  // 출력: 10 (z는 여전히 10)
+</code></pre>
+	<h3 id="변수-이름-짓기-규칙">변수 이름 짓기 규칙</h3>
+	<ol>
+		<li>특수문자 사용 가능하나 권장하지 않음</li>
+		<li>숫자로 시작할 수 없음</li>
+		<li>예약어(키워드, 함수명 등)는 사용할 수 없음</li>
+		<li>대소문자 구분됨</li>
+		<li>관습:<ul>
+				<li>첫 문자는 소문자</li>
+				<li>사용하지 않는 변수는 _로 시작</li>
+				<li>클래스명은 첫 문자를 대문자로</li>
+				<li>주로 카멜 표기법 사용 (예: myVariableName)</li>
+			</ul>
+		</li>
+	</ol>
+	<h3 id="변수의-타입">변수의 타입</h3>
+	<p>JavaScript는 동적 타입 언어로, 변수의 타입을 자동으로 구분합니다.</p>
+	typeof(값 또는 변수) // 타입 출력 단) 완벽하지 않음
+
+	<h3 id="변수-값-변경">변수 값 변경</h3>
+	변수명 = 새로운 값
+
+	<p>이러한 개념들은 JavaScript 프로그래밍의 기초를 이루며, 코드 작성 시 변수의 효과적인 사용과 관리에 중요합니다.</p>
+	<hr>
+	<h2 id="원시-타입">원시 타입</h2>
+	<p>JavaScript에는 7가지 원시 타입이 있습니다: string, number, bigint, boolean, undefined, symbol, null</p>
+	<h3 id="타입-확인">타입 확인</h3>
+	<ul>
+		<li>Object.prototype.toString.call() 메서드를 사용하여 타입을 확인할 수 있습니다.</li>
+		<li>타입 체크 함수 예시:</li>
+	</ul>
+	<pre><code class="language-javascript" id="code-text">function typeCheck(value) {
+    const return_value = Object.prototype.toString.call(value);
+    const type = return_value.substring(
+        return_value.indexOf(&quot; &quot;) + 1,
+        return_value.indexOf(&quot;]&quot;)
+    );
+    return type.toLowerCase();
+}
+</code></pre>
+	<h3 id="원시-타입의-특징">원시 타입의 특징</h3>
+	<ul>
+		<li>원시 타입의 값은 불변(immutable)입니다.</li>
+	</ul>
+	<hr>
+	<h2 id="문자열-string">문자열 (String)</h2>
+	<h3 id="문자열-생성">문자열 생성</h3>
+	<ul>
+		<li>작은따옴표(&#39;&#39;), 큰따옴표(&quot;&quot;), 백틱(``)으로 문자열을 생성할 수 있습니다.</li>
+		<li>템플릿 리터럴 사용 (백틱 사용 시):</li>
+	</ul>
+	<pre><code class="language-javascript"id="code-text">let name = &#39;Jack&#39;
+let age = 15
+let text = `안녕하세요 저는 ${name}이라고 합니다, 제 나이는 ${age}입니다`
+</code></pre>
+	<h3 id="특수-문자">특수 문자</h3>
+	<ul>
+		<li>\n: 줄바꿈</li>
+		<li>\t: 탭</li>
+		<li>\: 특수문자 앞에 사용하여 해당 문자를 출력</li>
+	</ul>
+	<h3 id="문자열-특징">문자열 특징</h3>
+	<ol>
+		<li>인덱스로 접근 가능 (0부터 시작)</li>
+		<li>length 속성으로 길이 확인 가능</li>
+		<li>불변성: 한 번 생성된 문자열은 변경 불가능</li>
+	</ol>
+	<pre><code class="language-javascript"id="code-text">let 불멸자 = &quot;immortal&quot;;
+불멸자[0] = &#39;l&#39;;
+console.log(불멸자);  // 여전히 &quot;immortal&quot;
+</code></pre>
+	<ol start="4">
+		<li>문자열 연결: + 연산자 사용</li>
+	</ol>
+	<pre><code class="language-javascript"id="code-text">let lyrics1 = &#39;광야로 걸어가 &#39;;
+let lyrics2 = &#39;알아 네 home ground&#39;;
+console.log(lyrics1 + lyrics2);  // &quot;광야로 걸어가 알아 네 home ground&quot;
+</code></pre>
+	<h3 id="문자열-메서드">문자열 메서드</h3>
+	<ol>
+		<li>indexOf(&#39;찾을 문자&#39;, 시작 위치): 문자열 검색</li>
+		<li>replace(&#39;변경할 문자&#39;,&#39;변경 될 문자&#39;): 첫 번째 일치 항목 대체</li>
+		<li>slice(start, end): 부분 문자열 추출</li>
+		<li>split(&#39;기준&#39;): 문자열을 배열로 분할</li>
+		<li>toLowerCase(), toUpperCase(): 대소문자 변환</li>
+		<li>trim(): 앞뒤 공백 제거</li>
+		<li>length: 문자열 길이 확인</li>
+	</ol>
+	<p>예시:</p>
+	<pre><code class="language-javascript"id="code-text">&#39;010-0000-0001&#39;.split(&#39;-&#39;)[2]  // &quot;0001&quot;
+	</code></pre>
+	<p>이러한 문자열 조작 방법들은 JavaScript에서 텍스트 데이터를 다룰 때 매우 유용합니다.</p>
+	<hr>
+	<h2 id="숫자-number">숫자 (Number)</h2>
+	<p>JavaScript에서 숫자 처리는 다른 많은 프로그래밍 언어와 다른 독특한 특징이 있습니다.</p>
+	<h3 id="javascript의-숫자-타입-특징">JavaScript의 숫자 타입 특징</h3>
+	<ol>
+		<li>단일 숫자 타입: JavaScript는 정수, 실수, 소수를 모두 하나의 &#39;Number&#39; 타입으로 표현합니다.
+		</li>
+		<li>64비트 부동소수점: 모든 숫자는 내부적으로 64비트 부동소수점 형식(IEEE 754 표준)으로 표현됩니다.
+		</li>
+		<li>정밀도: 정수는 -(2^53 - 1)부터 (2^53 - 1) 사이에서 정확하게 표현됩니다.
+		</li>
+	</ol>
+	<p>예시:</p>
+	<pre><code class="language-javascript"id="code-text">let integerNumber = 42;
+let floatNumber = 3.14;
+let scientificNotation = 5e-4;  // 0.0005
+
+console.log(typeof integerNumber);  // &quot;number&quot;
+console.log(typeof floatNumber);    // &quot;number&quot;
+console.log(typeof scientificNotation);  // &quot;number&quot;
+</code></pre>
+	<h3 id="주의사항">주의사항</h3>
+	<ol>
+		<li>정밀도 손실: 매우 큰 숫자나 매우 작은 소수를 다룰 때 정밀도 손실이 발생할 수 있습니다.
+		</li>
+		<li>특별한 값들:
+			<ul>
+				<li>Infinity: 양의 무한대</li>
+				<li>-Infinity: 음의 무한대</li>
+				<li>NaN: &#39;Not a Number&#39;, 잘못된 연산 결과를 나타냄</li>
+			</ul>
+		</li>
+		<li>BigInt: ES2020부터 도입된 새로운 원시 타입으로, 아주 큰 정수를 다룰 때 사용합니다.
+		</li>
+	</ol>
+	<pre><code class="language-javascript"id="code-text">let bigNumber = 1234567890123456789012345678901234567890n;  // 끝에 &#39;n&#39;을 붙여 BigInt로 표현
+	</code></pre>
+	<h3 id="산술-연산">산술 연산</h3>
+	<ul>
+		<li>기본 연산: +, -, *, /</li>
+		<li>승수 연산: ** (예: 10 ** 3 = 1000, 10 ** 0.5 = 2 (제곱근))</li>
+		<li>나머지 연산: %</li>
+		<li>음수 표시: -2, 음수의 음수 표시: -(-2)</li>
+		<li>증감 연산자: ++, --
+			<ul>
+				<li>전위 연산자 (++x, --x): 즉시 증가/감소 후 반환</li>
+				<li>후위 연산자 (x++, x--): 현재 값 반환 후 증가/감소</li>
+			</ul>
+		</li>
+	</ul>
+	<p>예제:</p>
+	<pre><code class="language-javascript"id="code-text">let a = 5, b = 5;
+console.log(++a);  // 6
+console.log(b++);  // 5
+console.log(b);    // 6
+
+let x = 3;
+let y = ++x * 2;   // x는 4, y는 8
+let p = 3;
+let q = p++ * 2;   // q는 6, 그 후 p는 4
+</code></pre>
+	<ul>
+		<li>비교 연산자: &gt;, &gt;=, &lt;, &lt;=, ==(타입
+			무시), !=, ===(타입까지 확인), !==</li>
+		<li>특수 값: Infinity (양의 무한), -Infinity (음의 무한)</li>
+		<li>지수 표기법: 3e10 = 3 * 10^10</li>
+	</ul>
+	<h3 id="증감-연산자">증감 연산자</h3>
+	<p>증감 연산자는 변수의 값을 1 증가시키거나 감소시키는 연산자입니다. JavaScript에서는 ++(증가)와 --(감소) 두 가지 증감 연산자를 제공합니다.
+	</p>
+	<h3 id="증감-연산자의-위치">증감 연산자의 위치</h3>
+	<p>증감 연산자는 변수의 앞(전위)이나 뒤(후위)에 위치할 수 있으며, 위치에 따라 동작이 달라집니다.</p>
+	<ol>
+		<li>전위 연산자 (++x 또는 --x):
+			<ul>
+				<li>변수의 값을 즉시 증가/감소시킨 후, 해당 줄의 나머지 연산을 수행합니다.</li>
+				<li>증가/감소된 값이 즉시 반환됩니다.</li>
+			</ul>
+		</li>
+		<li>후위 연산자 (x++ 또는 x--):
+			<ul>
+				<li>해당 줄의 다른 연산을 모두 수행한 후에 변수의 값을 증가/감소시킵니다.</li>
+				<li>증가/감소되기 전의 원래 값이 반환됩니다.</li>
+			</ul>
+		</li>
+	</ol>
+	<h3 id="예제">예제</h3>
+	<pre><code class="language-javascript"id="code-text">let a = 5;
+let b = 5;
+
+console.log(++a);  // 출력: 6 (a의 값이 즉시 증가하고 그 값이 출력됨)
+console.log(a);    // 출력: 6 (a는 이미 증가된 상태)
+
+console.log(b++);  // 출력: 5 (b의 원래 값이 출력된 후 b가 증가됨)
+console.log(b);    // 출력: 6 (이제 b가 증가된 상태)
+
+// 복합 예제
+let x = 3;
+let y = ++x * 2;   // x는 즉시 4가 되고, y는 8이 됩니다 (4 * 2)
+
+let p = 3;
+let q = p++ * 2;   // q는 6이 되고 (3 * 2), 그 후 p가 4가 됩니다
+</code></pre>
+	<h3 id="주의사항-1">주의사항</h3>
+	<ul>
+		<li>증감 연산자를 사용할 때는 코드의 가독성을 고려해야 합니다. 복잡한 표현식 내에서 증감 연산자를 사용하면 코드를 이해하기 어려워질 수 있습니다.</li>
+		<li>가능하면 별도의 줄에서 증감 연산을 수행하는 것이 코드의 명확성을 높일 수 있습니다.</li>
+	</ul>
+	<pre><code class="language-javascript"id="code-text">// 권장하지 않는 방식
+let result = ++x + y--;
+
+// 더 명확한 방식
+x++;
+let result = x + y;
+y--;
+</code></pre>
+	<p>증감 연산자의 동작을 정확히 이해하면 더 효율적이고 간결한 코드를 작성할 수 있지만, 과도한 사용은 코드의 복잡성을 증가시킬 수 있으므로 적절히 사용하는 것이 중요합니다.</p>
+	<h3 id="숫자-메소드">숫자 메소드</h3>
+	<ol>
+		<li>parseInt(), parseFloat(): 문자열을 정수 또는 실수로 변환</li>
+		<li>toString(): 숫자를 문자열로 변환 (예: (42).toString())</li>
+		<li>Number.isNaN(): 값이 NaN인지 확인</li>
+	</ol>
+	<h3 id="math-내장-객체">Math 내장 객체</h3>
+	<ol>
+		<li>Math.PI: 원주율(π)</li>
+		<li>Math.round(숫자): 반올림</li>
+		<li>Math.pow(숫자, 승수): 거듭제곱</li>
+		<li>Math.sqrt(숫자): 제곱근</li>
+		<li>Math.abs(숫자): 절댓값</li>
+		<li>Math.random(): 0과 1 사이의 난수 생성</li>
+		<li>Math.max(): 최대값</li>
+		<li>Math.min(): 최소값</li>
+	</ol>
+	<p>이러한 특징과 메소드들을 이해하면 JavaScript에서 숫자를 효과적으로 다룰 수 있습니다.</p>
+	<hr>
+	<h2 id="논리-자료형-boolean">논리 자료형 (Boolean)</h2>
+	<p>Boolean 타입은 true 또는 false 두 가지 값 중 하나만을 가질 수 있는 자료형입니다. 주로 조건문(if)의 조건으로 사용되며, 프로그램의
+		흐름을 제어하는 데 중요한 역할을 합니다.</p>
+	<h3 id="비교-연산자">비교 연산자</h3>
+	<p>비교 연산자는 두 값을 비교하여 Boolean 값을 반환합니다.</p>
+	<ul>
+		<li>&gt; : 크다</li>
+		<li>&gt;= : 크거나 같다</li>
+		<li>&lt; : 작다</li>
+		<li>&lt;= : 작거나 같다</li>
+		<li>== : 동등하다 (타입 무시)</li>
+		<li>!= : 동등하지 않다 (타입 무시)</li>
+		<li>=== : 일치한다 (타입까지 확인)</li>
+		<li>!== : 일치하지 않는다 (타입까지 확인)</li>
+	</ul>
+	<p>예시:</p>
+	<pre><code class="language-javascript"id="code-text">console.log(5 &gt; 3);   // true
+console.log(5 == &quot;5&quot;);  // true
+console.log(5 === &quot;5&quot;);  // false
+</code></pre>
+	<h3 id="논리-연산자">논리 연산자</h3>
+	<p>논리 연산자는 Boolean 값들을 조합하여 새로운 Boolean 값을 생성합니다.</p>
+	<ol>
+		<li>
+			<p>&amp;&amp; (논리곱, AND)</p>
+			<ul>
+				<li>두 조건이 모두 참일 때만 true를 반환합니다.</li>
+				<li>하나라도 거짓이면 false를 반환합니다.</li>
+			</ul>
+			<pre><code class="language-javascript"id="code-text">console.log(true &amp;&amp; true);   // true
+console.log(true &amp;&amp; false);  // false
+console.log(false &amp;&amp; true);  // false
+console.log(false &amp;&amp; false); // false
+</code></pre>
+		</li>
+		<li>
+			<p>|| (논리합, OR)</p>
+			<ul>
+				<li>두 조건 중 하나라도 참이면 true를 반환합니다.</li>
+				<li>두 조건이 모두 거짓일 때만 false를 반환합니다.</li>
+			</ul>
+			<pre><code class="language-javascript"id="code-text">console.log(true || true);   // true
+console.log(true || false);  // true
+console.log(false || true);  // true
+console.log(false || false); // false
+</code></pre>
+		</li>
+		<li>
+			<p>! (부정, NOT)</p>
+			<ul>
+				<li>주어진 Boolean 값의 반대 값을 반환합니다.</li>
+			</ul>
+			<pre><code class="language-javascript"id="code-text">console.log(!true);   // false
+console.log(!false);  // true
+</code></pre>
+		</li>
+	</ol>
+	<h3 id="주의사항-2">주의사항</h3>
+	<ol>
+		<li>
+			<p>단락 평가 (Short-circuit Evaluation)</p>
+			<ul>
+				<li>&amp;&amp;와 || 연산자는 왼쪽에서 오른쪽으로 평가되며, 결과가 확정되면 나머지 표현식은 평가하지 않습니다.</li>
+			</ul>
+			<pre><code class="language-javascript"id="code-text">console.log(false &amp;&amp; someFunction());  // false (someFunction은 호출되지 않음)
+console.log(true || someFunction());   // true (someFunction은 호출되지 않음)
+</code></pre>
+		</li>
+		<li>
+			<p>Truthy와 Falsy</p>
+			<ul>
+				<li>JavaScript에서는 Boolean 타입이 아닌 값도 조건문에서 true 또는 false로 평가될 수 있습니다.</li>
+				<li>Falsy 값: false, 0, &#39;&#39; (빈 문자열), null,
+					undefined, NaN
+				</li>
+				<li>그 외의 값들은 모두 Truthy로 평가됩니다.</li>
+			</ul>
+			<pre><code class="language-javascript"id="code-text">if (1) {
+  console.log(&quot;This will be printed&quot;);  // 1은 Truthy
+}
+
+if (0) {
+  console.log(&quot;This won&#39;t be printed&quot;);  // 0은 Falsy
+}
+</code></pre>
+		</li>
+	</ol>
+	<p>논리 연산자와 Boolean 타입을 잘 이해하면 복잡한 조건문을 효과적으로 작성할 수 있으며, 프로그램의 흐름을 정확하게 제어할 수 있습니다.</p>
+	<hr>
+	<h2 id="함수-function">함수 (Function)</h2>
+	<p>함수는 반복되는 작업을 단순화하고 코드를 구조화하는 데 사용되는 중요한 개념입니다.</p>
+	<h3 id="함수-구조">함수 구조</h3>
+	<p>기본적인 함수의 구조는 다음과 같습니다:</p>
+	<pre><code class="language-javascript"id="code-text">function 함수명(parameter1, parameter2, ...) {
+    // 실행 코드
+    return 반환값;
+}
+</code></pre>
+	<p>함수 사용 (호출):</p>
+	<pre><code class="language-javascript"id="code-text">함수명(argument1, argument2, ...);
+	</code></pre>
+	<p>예시:</p>
+	<pre><code class="language-javascript"id="code-text">function greet(name) {
+    return `Hello, ${name}!`;
+}
+
+console.log(greet(&quot;Alice&quot;));  // 출력: Hello, Alice!
+</code></pre>
+	<h3 id="함수의-장점">함수의 장점</h3>
+	<ol>
+		<li>재사용성: 한 번 정의한 함수를 여러 번 사용할 수 있습니다.</li>
+		<li>유지보수: 함수 내부의 코드만 수정하면 되므로 유지보수가 용이합니다.</li>
+		<li>구조 파악: 복잡한 로직을 함수로 분리하면 전체 코드의 구조를 쉽게 파악할 수 있습니다.</li>
+	</ol>
+	<h3 id="화살표-함수-arrow-function">화살표 함수 (Arrow Function)</h3>
+	<p>ES6에서 도입된 화살표 함수는 함수를 더 간결하게 작성할 수 있게 해줍니다.</p>
+	<p>기본 문법:</p>
+	<pre><code class="language-javascript"id="code-text">let 함수명 = (parameter1, parameter2, ...) =&gt; 표현식;
+	</code></pre>
+	<p>예시:</p>
+	<ol>
+		<li>
+			<p>기존 함수 표현:</p>
+			<pre><code class="language-javascript"id="code-text">let sum = function(x, y) {
+    return x + y;
+};
+</code></pre>
+		</li>
+		<li>
+			<p>화살표 함수로 변환:</p>
+			<pre><code class="language-javascript"id="code-text">let sum = (x, y) =&gt; x + y;
+			</code></pre>
+		</li>
+		<li>
+			<p>여러 줄의 코드가 필요한 경우:</p>
+			<pre><code class="language-javascript"id="code-text">let sum = (x, y) =&gt; {
+    let result = x + y;
+    console.log(`${x} + ${y} = ${result}`);
+    return result;
+};
+</code></pre>
+		</li>
+	</ol>
+	<h3 id="주의사항-3">주의사항</h3>
+	<ol>
+		<li>파라미터와 아규먼트:
+			<ul>
+				<li>파라미터(Parameter)는 함수 정의 시 사용되는 변수입니다.</li>
+				<li>아규먼트(Argument)는 함수 호출 시 전달되는 실제 값입니다.</li>
+			</ul>
+		</li>
+		<li>return 문:
+			<ul>
+				<li>return문은 함수의 실행을 종료하고 값을 반환합니다.</li>
+				<li>return문이 없으면 함수는 undefined를 반환합니다.</li>
+			</ul>
+		</li>
+		<li>함수 스코프:
+			<ul>
+				<li>함수 내부에서 선언된 변수는 함수 외부에서 접근할 수 없습니다.</li>
+			</ul>
+		</li>
+		<li>화살표 함수의 this:
+			<ul>
+				<li>화살표 함수는 자신만의 this를 생성하지 않고, 외부 스코프의 this를 사용합니다.</li>
+			</ul>
+		</li>
+	</ol>
+	<hr>
+	<h2 id="객체-타입">객체 타입</h2>
+	<p>객체 타입은 원시 타입과 달리 값을 변경할 수 있습니다.</p>
+	<h3 id="배열-array">배열 (Array)</h3>
+	<p>배열은 여러 값을 순서대로 저장하는 객체 타입입니다.</p>
+	<h3 id="배열-선언">배열 선언</h3>
+	<pre><code class="language-javascript"id="code-text">const arr1 = [];
+const arr2 = [1, 2, 3];
+const arr3 = new Array(4, 5, 6);
+const arr4 = new Array(3);  // 길이가 3인 빈 배열
+const arr5 = Array.from(&#39;hello&#39;);  // [&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;]
+</code></pre>
+	<h3 id="배열의-특징">배열의 특징</h3>
+	<ol>
+		<li>인덱스를 통한 접근: 배열의 각 요소는 0부터 시작하는 인덱스를 통해 접근할 수 있습니다.</li>
+		<li>다차원 배열: 배열 안에 배열을 포함할 수 있습니다.</li>
+	</ol>
+	<pre><code class="language-javascript"id="code-text">const arr = [
+    [1, 2],
+    [3, 4],
+    [5, [10, 20, 30, [100, 200]]]
+];
+console.log(arr[2][1][3][0]);  // 100
+</code></pre>
+	<ol start="3">
+		<li>참조 타입: 배열을 다른 변수에 할당하면 참조가 복사됩니다.</li>
+	</ol>
+	<pre><code class="language-javascript"id="code-text">let arr1 = [1, 2, 3];
+let arr2 = arr1;
+arr1[0] = 10;
+console.log(arr2);  // [10, 2, 3]
+</code></pre>
+	<h3 id="배열-메소드">배열 메소드</h3>
+	<ol>
+		<li>push(item): 배열 끝에 항목 추가</li>
+		<li>pop(): 배열 끝 항목 제거 및 반환</li>
+		<li>shift(): 배열 첫 항목 제거 및 반환</li>
+		<li>unshift(item): 배열 앞에 항목 추가</li>
+		<li>splice(start, deleteCount, items...): 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가</li>
+		<li>slice(start, end): 배열의 일부를 추출, 원본 배열은 변경되지 않음</li>
+		<li>sort(): 배열 정렬. 기본적으로 유니코드 순서로 정렬됨
+			<pre><code class="language-js"id="code-text">arr.sort((a, b) =&gt; a - b);  // 오름차순 정렬
+arr.sort((a, b) =&gt; b - a);  // 내림차순 정렬
+</code></pre>
+		</li>
+		<li>includes(item): 배열에 특정 요소가 포함되어 있는지 확인</li>
+		<li>join(separator): 배열의 모든 요소를 연결해 하나의 문자열로 만듦</li>
+	</ol>
+	<h3 id="foreach-메소드">forEach() 메소드</h3>
+	<p>forEach() 메소드는 배열의 각 요소에 대해 주어진 함수를 실행합니다.</p>
+	<h3 id="기본-구문">기본 구문</h3>
+	<pre><code class="language-javascript"id="code-text">array.forEach(function(currentValue, index, array) {
+    // 실행할 코드
+});
+</code></pre>
+	<ul>
+		<li>currentValue: 현재 처리 중인 요소</li>
+		<li>index: 현재 요소의 인덱스</li>
+		<li>array: forEach()를 호출한 배열</li>
+	</ul>
+	<h3 id="예제-1">예제</h3>
+	<ol>
+		<li>
+			<p>배열의 모든 요소 출력:</p>
+			<pre><code class="language-javascript"id="code-text">const fruits = [&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;];
+fruits.forEach(fruit =&gt; console.log(fruit));
+</code></pre>
+		</li>
+		<li>
+			<p>배열의 합계 구하기:</p>
+			<pre><code class="language-javascript"id="code-text">let sum = 0;
+[1, 2, 3, 4, 5].forEach(num =&gt; sum += num);
+console.log(sum);  // 15
+</code></pre>
+		</li>
+	</ol>
+	<h3 id="특징">특징</h3>
+	<ul>
+		<li>배열을 변경하지 않습니다.</li>
+		<li>모든 요소를 순회합니다 (중간에 중단할 수 없음).</li>
+		<li>새로운 배열을 반환하지 않습니다.</li>
+	</ul>
+	<h3 id="map-메소드">map() 메소드</h3>
+	<p>map() 메소드는 배열의 모든 요소에 대해 주어진 함수를 호출한 결과로 새로운 배열을 생성합니다.</p>
+	<h3 id="기본-구문-1">기본 구문</h3>
+	<pre><code class="language-javascript"id="code-text">const newArray = array.map(function(currentValue, index, array) {
+    // 반환할 요소
+});
+</code></pre>
+	<h3 id="예제-2">예제</h3>
+	<ol>
+		<li>
+			<p>숫자 배열의 각 요소를 두 배로:</p>
+			<pre><code class="language-javascript"id="code-text">const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(num =&gt; num * 2);
+console.log(doubled);  // [2, 4, 6, 8, 10]
+</code></pre>
+		</li>
+		<li>
+			<p>객체 배열에서 특정 속성만 추출:</p>
+			<pre><code class="language-javascript"id="code-text">const users = [
+    { name: &#39;Alice&#39;, age: 25 },
+    { name: &#39;Bob&#39;, age: 30 }
+];
+const names = users.map(user =&gt; user.name);
+console.log(names);  // [&#39;Alice&#39;, &#39;Bob&#39;]
+</code></pre>
+		</li>
+	</ol>
+	<h3 id="특징-1">특징</h3>
+	<ul>
+		<li>새로운 배열을 반환합니다.</li>
+		<li>원본 배열은 변경되지 않습니다.</li>
+		<li>각 요소에 대해 변환 작업을 수행할 때 유용합니다.</li>
+	</ul>
+	<p>forEach()와 map()의 주요 차이점은 map()이 새로운 배열을 반환한다는 점입니다. 데이터 변환이 필요한 경우
+		map()을, 단순히 각 요소에 대해 작업을 수행해야 할 경우 forEach()를 사용하는 것이 적합합니다.
+	</p>
+</body>
+<script>
+	function highlightSyntax(codeElement) {
+		const text = codeElement.textContent;
+		const tokens = text.split(/(\s+|[(){}[\];,.])/);
+
+		const keywords = ['function', 'const', 'let', 'var', 'if', 'else', 'return', 'for', 'while'];
+		const operators = ['+', '-', '*', '/', '=', '==', '===', '!=', '!==', '<', '>', '<=', '>='];
+
+		codeElement.innerHTML = tokens.map(token => {
+			if (token === 'console') {
+				return `<span class="console">${token}</span>`;
+			} else if (keywords.includes(token)) {
+				return `<span class="keyword">${token}</span>`;
+			} else if (/^["'].*["']$/.test(token)) {
+				return `<span class="string">${token}</span>`;
+			} else if (!isNaN(token)) {
+				return `<span class="number">${token}</span>`;
+			} else if (/^\w+(?=\()/.test(token)) {
+				return `<span class="function">${token}</span>`;
+			} else if (operators.includes(token)) {
+				return `<span class="operator">${token}</span>`;
+			} else if (token.startsWith('//')) {
+				return `<span class="comment">${token}</span>`;
+			} else if (/^[A-Z]\w+/.test(token)) {
+				return `<span class="class">${token}</span>`;
+			} else if (/^\w+(?=[,;.])/.test(token)) {
+				return `<span class="variable-with-punctuation">${token}</span>`;
+			} else if (/^\w+/.test(token)) {
+				return `<span class="variable">${token}</span>`;
+			}
+			return token;
+		}).join('');
+	}
+
+	document.querySelectorAll('code[id="code-text"]').forEach(highlightSyntax);
+</script>
+
+
+</html>
