@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --bg-color: #f4f4f4;
+        --text-color: #333;
+        --heading-color: #2c3e50;
+        --link-color: #fd0000;
+        --code-bg: #3d4a57;
+        --code-color: #ebc2bc;
+        --p-color: #a14232;
+        --keyword-color: #007acc;
+        --string-color: #a31515;
+        --comment-color: #008000;
+        --function-color: #795e26;
+        --number-color: #098658;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: var(--bg-color);
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      body.dark-mode {
+        --bg-color: #1a1a1a;
+        --text-color: #e0e0e0;
+        --heading-color: #add8e6;
+        --link-color: #98fb98;
+        --code-bg: #2c3e50;
+        --code-color: #e6e6fa;
+        --p-color: #ffa500;
+        --keyword-color: #569cd6;
+        --string-color: #ce9178;
+        --comment-color: #6a9955;
+        --function-color: #dcdcaa;
+        --number-color: #b5cea8;
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: var(--heading-color);
+      }
+
+      h1 {
+        border-bottom: 2px solid var(--link-color);
+        padding-bottom: 10px;
+      }
+
+      a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      ul,
+      ol {
+        padding-left: 20px;
+      }
+
+      code {
+        font-family: "Courier New", Courier, monospace;
+        background-color: var(--code-bg);
+        color: var(--code-color);
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+
+      pre {
+        background-color: var(--code-bg);
+        color: var(--code-color);
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+
+      pre code {
+        background-color: transparent;
+        padding: 0;
+      }
+
+      .mode-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px;
+        background-color: var(--heading-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      strong {
+        color: #e67e22;
+      }
+
+      li > p {
+        color: var(--p-color);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 id="javascript의-기초-2일차">
+      <strong> J</strong>ava<strong>S</strong>cript의 기초
+      <strong>2</strong>일차
+    </h1>
+    <h2 id="목차">목차</h2>
+    <ol>
+      <li><a href="#%EA%B0%9D%EC%B2%B4-object">객체</a></li>
+      <li><a href="#%EC%A1%B0%EA%B1%B4%EB%AC%B8">조건문</a></li>
+      <li><a href="#%EB%B0%98%EB%B3%B5%EB%AC%B8">반복문</a></li>
+      <li>
+        <a href="#%EC%A0%84%EA%B0%9C-%EA%B5%AC%EB%AC%B8-spread-syntax"
+          >전개 구문</a
+        >
+      </li>
+      <li>
+        <a
+          href="#%EA%B5%AC%EC%A1%B0-%EB%B6%84%ED%95%B4-%ED%95%A0%EB%8B%B9-destructuring"
+          >구조 분해 할당</a
+        >
+      </li>
+      <li><a href="#%EC%9D%98-%EC%A4%91%EC%9A%94%EC%84%B1">...의 중요성</a></li>
+      <li><a href="#this">this</a></li>
+      <li>
+        <a
+          href="#this%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%A0-%EB%95%8C%EC%99%80-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%84-%EB%95%8C%EC%9D%98-%EC%B0%A8%EC%9D%B4%EB%A5%BC-%EB%B9%84%EA%B5%90%ED%95%B4-%EB%93%9C%EB%A6%AC%EA%B2%A0%EC%8A%B5%EB%8B%88%EB%8B%A4"
+          >this 사례 비교</a
+        >
+      </li>
+    </ol>
+    <h2 id="객체-object">객체 (Object)</h2>
+    <p>객체는 key와 값 가집니다.</p>
+    <ul>
+      <li>
+        <p>객체 선언</p>
+        <ul>
+          <li>객체명 = { key1 : 값1 , key2 : 값2 }</li>
+        </ul>
+      </li>
+      <li>
+        <p>객체 호출</p>
+        <ul>
+          <li>객체명[ key ]</li>
+          <li>객체명.key</li>
+        </ul>
+      </li>
+      <li>
+        <p>객체 추가, 수정</p>
+        <ul>
+          <li>객체명.key = 값;</li>
+        </ul>
+      </li>
+      <li>
+        <p>객체 삭제</p>
+        <ul>
+          <li>delete 객체명.key;</li>
+        </ul>
+      </li>
+      <li>
+        <p>객체 검색</p>
+        <ul>
+          <li>key in 객체명;</li>
+        </ul>
+      </li>
+      <li>
+        <p>매서드</p>
+        <ol>
+          <li>
+            Object.keys(객체명);
+            <ul>
+              <li>객체의 key 들 배열로 반환</li>
+            </ul>
+          </li>
+          <li>
+            Object.valus(객체명);
+            <ul>
+              <li>객체의 valus 들 배열로 반환</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+    <h2 id="조건문">조건문</h2>
+    <p>
+      조건문은 조건의 true, false로 조건문안에 코드를 실항 여부를 판단하는 문법
+      이다.
+    </p>
+    <ul>
+      <li>
+        <p>조건문 종류</p>
+        <ul>
+          <li>
+            <p>if 문</p>
+            <ul>
+              <li>
+                <p>if 조건 양식</p>
+                <pre><code class="language-js"> if (조건) { 
+    실행 코드;
+    return 반환값;
+ } else if (다른 조건) {
+    실행 코드;
+ } else {
+    실행 코드;
+ }</code></pre>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>문법 생략</p>
+            <ul>
+              <li>
+                <p>조건: 실행코드 1줄 일때</p>
+                <pre><code class="language-js"> if (조건) 실행코드;</code></pre>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>switch 문</p>
+            <ul>
+              <li>
+                <p>switch 조건문 양식</p>
+                <pre><code class="language-js"> switch (조건) {
+ case 값1:
+     실행코드
+     break;
+ case 값2:
+     실행코드
+     break;
+ default:
+     실행코드
+     break;
+ }</code></pre>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="반복문">반복문</h2>
+    <ul>
+      <li>
+        <p>반복문 종류</p>
+      </li>
+      <li>
+        <p>for 반목문 양식</p>
+        <pre><code class="language-js"> for (휘발성 변수 선언&amp; 초기값 설정; 조건 범위; 변수 증감) {
+     1회 실행 코드;
+ }</code></pre>
+      </li>
+      <li>
+        <p>for 반복문 종첩시 조건 변수 초기화 필요없다</p>
+      </li>
+      <li>
+        <p>while 반복문 양식</p>
+        <pre><code class="language-js"> 조건 변수 선언;
+ while (조건) {
+     반복 코드;
+     조건 변수 증감;// 조건 범위 벗어날때 까지 반복
+ }</code></pre>
+      </li>
+      <li>
+        <p>while 반복문 종첨 조건 변수 초기화 해야 정상 작동</p>
+      </li>
+      <li>
+        <p>반복문 빠른 탈출 명령</p>
+        <ul>
+          <li>break: 특정 조건에 빠른 탈출</li>
+          <li>continue: 특정 조건까지 생략, 범위 벗어날때 코드 실행</li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="전개-구문-spread-syntax">전개 구문 (Spread Syntax)</h2>
+    <p>전개 구문은 배열이나 객체의 요소를 &quot;펼치는&quot; 기능을 합니다.</p>
+    <ol>
+      <li>
+        <p>배열에서의 사용:</p>
+        <pre><code class="language-javascript"> const arr1 = [1, 2, 3];
+ const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]</code></pre>
+      </li>
+      <li>
+        <p>객체에서의 사용:</p>
+        <pre><code class="language-javascript"> const obj1 = { a: 1, b: 2 };
+ const obj2 = { ...obj1, c: 3 }; // { a: 1, b: 2, c: 3 }</code></pre>
+      </li>
+      <li>
+        <p>함수 인자로 사용:</p>
+        <pre><code class="language-javascript"> function sum(x, y, z) {
+     return x + y + z;
+ }
+ const numbers = [1, 2, 3];
+ console.log(sum(...numbers)); // 6</code></pre>
+      </li>
+    </ol>
+    <h2 id="구조-분해-할당-destructuring">구조 분해 할당 (Destructuring)</h2>
+    <p>
+      구조 분해 할당은 배열이나 객체의 속성을 해체하여 그 값을 개별 변수에 담을
+      수 있게 하는 표현식입니다.
+    </p>
+    <ol>
+      <li>
+        <p>배열 구조 분해:</p>
+        <pre><code class="language-javascript"> const [a, b] = [1, 2];
+ console.log(a); // 1
+ console.log(b); // 2</code></pre>
+      </li>
+      <li>
+        <p>객체 구조 분해:</p>
+        <pre><code class="language-javascript"> const { name, age } = { name: &#39;John&#39;, age: 30 };
+ console.log(name); // &#39;John&#39;
+ console.log(age);  // 30</code></pre>
+      </li>
+      <li>
+        <p>함수 매개변수에서의 사용:</p>
+        <pre><code class="language-javascript"> function greet({ name, age }) {
+     console.log(`Hello, ${name}! You are ${age} years old.`);
+ }
+ greet({ name: &#39;Alice&#39;, age: 25 }); // &quot;Hello, Alice! You are 25 years old.&quot;</code></pre>
+      </li>
+    </ol>
+    <h2 id="의-중요성">&#39;...&#39;의 중요성</h2>
+    <ol>
+      <li>
+        <p>배열 복사 및 결합</p>
+        <ul>
+          <li>
+            <p>&#39;...&#39; 사용:</p>
+            <pre><code class="language-javascript"> const arr1 = [1, 2, 3];
+ const arr2 = [...arr1, 4, 5];
+ console.log(arr2); // [1, 2, 3, 4, 5]</code></pre>
+          </li>
+          <li>
+            <p>&#39;...&#39; 미사용:</p>
+            <pre><code class="language-javascript"> const arr1 = [1, 2, 3];
+ const arr2 = [arr1, 4, 5];
+ console.log(arr2); // [[1, 2, 3], 4, 5]</code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>객체 복사 및 병합</p>
+        <ul>
+          <li>
+            <p>&#39;...&#39; 사용:</p>
+            <pre><code class="language-javascript"> const obj1 = { a: 1, b: 2 };
+ const obj2 = { ...obj1, c: 3 };
+ console.log(obj2); // { a: 1, b: 2, c: 3 }</code></pre>
+          </li>
+          <li>
+            <p>&#39;...&#39; 미사용:</p>
+            <pre><code class="language-javascript"> const obj1 = { a: 1, b: 2 };
+ const obj2 = { obj1, c: 3 };
+ console.log(obj2); // { obj1: { a: 1, b: 2 }, c: 3 }</code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>함수 인자 전달</p>
+        <ul>
+          <li>
+            <p>&#39;...&#39; 사용:</p>
+            <pre><code class="language-javascript"> function sum(x, y, z) {
+     return x + y + z;
+ }
+ const numbers = [1, 2, 3];
+ console.log(sum(...numbers)); // 6</code></pre>
+          </li>
+          <li>
+            <p>&#39;...&#39; 미사용:</p>
+            <pre><code class="language-javascript"> function sum(x, y, z) {
+     return x + y + z;
+ }
+ const numbers = [1, 2, 3];
+ console.log(sum(numbers)); // &quot;1,2,3undefinedundefined&quot;</code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>나머지 매개변수 (Rest Parameters)</p>
+        <ul>
+          <li>
+            <p>&#39;...&#39; 사용:</p>
+            <pre><code class="language-javascript"> function myFunction(firstArg, ...restOfArgs) {
+     console.log(firstArg); // 1
+     console.log(restOfArgs); // [2, 3, 4, 5]
+ }
+ myFunction(1, 2, 3, 4, 5);</code></pre>
+          </li>
+          <li>
+            <p>&#39;...&#39; 미사용:</p>
+            <pre><code class="language-javascript"> function myFunction() {
+     console.log(arguments[0]); // 1
+     console.log(Array.from(arguments).slice(1)); // [2, 3, 4, 5]
+ }
+ myFunction(1, 2, 3, 4, 5);</code></pre>
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <h2 id="this">this</h2>
+    <ol>
+      <li>
+        <p>
+          기본 개념: &#39;this&#39;는 간단히 말해서 &quot;지금 이 코드가 누구의
+          것인지&quot;를 가리키는 특별한 단어입니다. 하지만 이
+          &quot;누구&quot;가 상황에 따라 달라질 수 있어서 때로는 헷갈릴 수
+          있습니다.
+        </p>
+        <pre><code class="language-js"> javascriptCopyconst 고양이 = {
+     이름: &quot;나비&quot;,
+     울기: function() {
+         console.log(this.이름 + &quot;가 야옹하고 웁니다.&quot;);
+      }
+ };
+ 고양이.울기(); // &quot;나비가 야옹하고 웁니다.&quot;</code></pre>
+      </li>
+      <li>
+        <p>전역 컨텍스트:</p>
+        <pre><code class="language-javascript"> console.log(this); // 브라우저에서는 Window 객체, Node.js에서는 global 객체</code></pre>
+      </li>
+      <li>
+        <p>함수 내부에서의 this:</p>
+        <pre><code class="language-javascript"> function simpleFunction() {
+     console.log(this);
+ }
+ simpleFunction(); // Window 객체 (strict mode에서는 undefined)</code></pre>
+      </li>
+      <li>
+        <p>메소드로서의 this:</p>
+        <pre><code class="language-javascript"> const obj = {
+     name: &quot;MyObject&quot;,
+     sayHello: function() {
+         console.log(&quot;Hello, I&#39;m &quot; + this.name);
+     }
+ };
+ obj.sayHello(); // &quot;Hello, I&#39;m MyObject&quot;</code></pre>
+      </li>
+      <li>
+        <p>이벤트 핸들러에서의 this:</p>
+        <pre><code class="language-javascript"> button.addEventListener(&quot;click&quot;, function() {
+     console.log(this); // 클릭된 버튼 요소
+ });</code></pre>
+      </li>
+      <li>
+        <p>생성자 함수에서의 this:</p>
+        <pre><code class="language-javascript"> function Person(name) {
+     this.name = name;
+ }
+ const john = new Person(&quot;John&quot;);
+ console.log(john.name); // &quot;John&quot;</code></pre>
+      </li>
+      <li>
+        <p>call, apply, bind 메소드:</p>
+        <pre><code class="language-javascript"> function greet() {
+     console.log(&quot;Hello, &quot; + this.name);
+ }
+ const person = { name: &quot;Alice&quot; };
+ greet.call(person); // &quot;Hello, Alice&quot;</code></pre>
+      </li>
+      <li>
+        <p>화살표 함수에서의 this:</p>
+        <pre><code class="language-javascript"> const obj = {
+     name: &quot;MyObject&quot;,
+     regularFunction: function() {
+         console.log(&quot;Regular function:&quot;, this.name);
+     },
+     arrowFunction: () =&gt; {
+         console.log(&quot;Arrow function:&quot;, this.name);
+     }
+ };
+ obj.regularFunction(); // 출력: &quot;Regular function: MyObject&quot;
+ obj.arrowFunction();   // 출력: &quot;Arrow function: undefined&quot;</code></pre>
+      </li>
+    </ol>
+    <p>이 예제에서 중요한 점은 다음과 같습니다:</p>
+    <ol>
+      <li>
+        <p>일반 함수(regularFunction)에서의 &#39;this&#39;:</p>
+        <ul>
+          <li>일반 함수에서 &#39;this&#39;는 함수가 호출될 때 결정됩니다.</li>
+          <li>
+            obj.regularFunction()으로 호출될 때, &#39;this&#39;는 obj를
+            가리킵니다.
+          </li>
+          <li>따라서 this.name은 &quot;MyObject&quot;가 됩니다.</li>
+        </ul>
+      </li>
+      <li>
+        <p>화살표 함수(arrowFunction)에서의 &#39;this&#39;:</p>
+        <ul>
+          <li>화살표 함수는 자신만의 &#39;this&#39;를 가지지 않습니다.</li>
+          <li>
+            대신, 화살표 함수는 그것이 정의된 곳의 &#39;this&#39;를 그대로
+            사용합니다.
+          </li>
+          <li>
+            이 경우, 화살표 함수는 전역 스코프(브라우저에서는 window,
+            Node.js에서는 global)에서 정의되었으므로, &#39;this&#39;는 전역
+            객체를 가리킵니다.
+          </li>
+          <li>
+            전역 객체에는 &#39;name&#39; 속성이 없으므로 (또는 빈 문자열),
+            &#39;undefined&#39;가 출력됩니다.
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <p>
+      이 차이점 때문에 객체의 메소드로 화살표 함수를 사용할 때는 주의가
+      필요합니다. 객체의 속성에 접근해야 하는 메소드라면 일반 함수를 사용하는
+      것이 더 적절할 수 있습니다.
+    </p>
+    <p>
+      화살표 함수의 이런 특성은 특정 상황(예: 콜백 함수 내에서 외부 스코프의
+      &#39;this&#39;를 유지하고 싶을 때)에서는 매우 유용할 수 있지만, 객체의
+      메소드로 사용할 때는 예상치 못한 결과를 낳을 수 있습니다.
+    </p>
+    <h3 id="this를-사용할-때와-사용하지-않을-때의-차이를-비교해-드리겠습니다">
+      &#39;this&#39;를 사용할 때와 사용하지 않을 때의 차이를 비교해 드리겠습니다
+    </h3>
+    <ol>
+      <li>
+        <p>객체 메서드</p>
+        <ul>
+          <li>
+            <p>this 없을 때:</p>
+            <pre><code class="language-javascript"> const 사람 = {
+     이름: &quot;홍길동&quot;,
+     나이: 30,
+     소개: function() {
+         console.log(&quot;제 이름은 &quot; + 사람.이름 + &quot;이고, 나이는 &quot; + 사람.나이 + &quot;살입니다.&quot;);
+     }
+ };
+ 사람.소개(); // &quot;제 이름은 홍길동이고, 나이는 30살입니다.&quot;</code></pre>
+          </li>
+          <li>
+            <p>this 있을 때:</p>
+            <pre><code class="language-javascript"> const 사람 = {
+     이름: &quot;홍길동&quot;,
+     나이: 30,
+     소개: function() {
+         console.log(&quot;제 이름은 &quot; + this.이름 + &quot;이고, 나이는 &quot; + this.나이 + &quot;살입니다.&quot;);
+     }
+ };
+ 사람.소개(); // &quot;제 이름은 홍길동이고, 나이는 30살입니다.&quot;</code></pre>
+          </li>
+        </ul>
+        <p>
+          차이점: &#39;this&#39;를 사용하면 객체 이름을 직접 참조하지 않아도
+          되므로, 객체 이름이 변경되어도 메서드 내부 코드를 수정할 필요가
+          없습니다.
+        </p>
+      </li>
+      <li>
+        <p>생성자 함수</p>
+        <ul>
+          <li>
+            <p>this 없을 때:</p>
+            <pre><code class="language-javascript"> function 사람(이름, 나이) {
+     const 새사람 = {};
+     새사람.이름 = 이름;
+     새사람.나이 = 나이;
+     새사람.소개 = function() {
+         console.log(&quot;제 이름은 &quot; + 새사람.이름 + &quot;이고, 나이는 &quot; + 새사람.나이 + &quot;살입니다.&quot;);
+     };
+     return 새사람;
+ }
+ const 길동 = 사람(&quot;홍길동&quot;, 30);
+ 길동.소개(); // &quot;제 이름은 홍길동이고, 나이는 30살입니다.&quot;</code></pre>
+          </li>
+          <li>
+            <p>this 있을 때:</p>
+            <pre><code class="language-javascript"> function 사람(이름, 나이) {
+     this.이름 = 이름;
+     this.나이 = 나이;
+     this.소개 = function() {
+         console.log(&quot;제 이름은 &quot; + this.이름 + &quot;이고, 나이는 &quot; + this.나이 + &quot;살입니다.&quot;);
+     };
+ }
+ const 길동 = new 사람(&quot;홍길동&quot;, 30);
+ 길동.소개(); // &quot;제 이름은 홍길동이고, 나이는 30살입니다.&quot;</code></pre>
+          </li>
+        </ul>
+        <p>
+          차이점: &#39;this&#39;를 사용하면 새 객체를 명시적으로 생성하고 반환할
+          필요가 없어집니다. &#39;new&#39; 키워드와 함께 사용하면 자동으로 새
+          객체가 생성되고 초기화됩니다.
+        </p>
+      </li>
+      <li>
+        <p>생성자 함수</p>
+        <ul>
+          <li>
+            <p>this 없을 때:</p>
+            <pre><code class="language-javascript"> const 버튼 = document.querySelector(&quot;#myButton&quot;);
+ 버튼.addEventListener(&quot;click&quot;, function(event) {
+     console.log(&quot;클릭된 버튼의 텍스트: &quot; + event.target.textContent);
+ });</code></pre>
+          </li>
+          <li>
+            <p>this 있을 때:</p>
+            <pre><code class="language-javascript"> const 버튼 = document.querySelector(&quot;#myButton&quot;);
+ 버튼.addEventListener(&quot;click&quot;, function() {
+     console.log(&quot;클릭된 버튼의 텍스트: &quot; + this.textContent);
+ });</code></pre>
+          </li>
+        </ul>
+        <p>
+          차이점: &#39;this&#39;를 사용하면 이벤트가 발생한 요소를 직접 참조할
+          수 있어, 코드가 더 간결해집니다.
+        </p>
+      </li>
+    </ol>
+    <p>결론:</p>
+    <ul>
+      <li>&#39;this&#39;를 사용하면 코드의 재사용성과 유연성이 높아집니다.</li>
+      <li>
+        객체 지향 프로그래밍에서 &#39;this&#39;는 더 직관적이고 효율적인 코드
+        작성을 가능하게 합니다.
+      </li>
+      <li>
+        그러나 &#39;this&#39;의 값이 컨텍스트에 따라 변할 수 있어 주의가
+        필요합니다.
+      </li>
+      <li>
+        &#39;this&#39;를 사용하지 않으면 때로는 코드가 더 명시적이고 예측 가능할
+        수 있지만, 재사용성과 유연성이 떨어질 수 있습니다.
+      </li>
+    </ul>
+
+    <button class="mode-toggle" id="modeToggle">🌙 다크 모드</button>
+
+    <!-- 기존 body 내용은 그대로 유지 -->
+
+    <script>
+      // 목차 항목 클릭 시 부드러운 스크롤
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // 다크 모드 토글
+      const modeToggle = document.getElementById("modeToggle");
+      modeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        if (document.body.classList.contains("dark-mode")) {
+          modeToggle.textContent = "☀️ 라이트 모드";
+        } else {
+          modeToggle.textContent = "🌙 다크 모드";
+        }
+      });
+    </script>
+  </body>
+</html>
