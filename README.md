@@ -1,7 +1,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=gradient&text=Welcome%20to%20my%20world&reversal=false&fontSize=40&textBg=false&animation=twinkling&rotate=0&fontAlign=50&fontAlignY=25" width="100%">
 
-<table>
-  <tr>
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr width="100%">
     <td width="52%">
       <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nathanlyj&layout=donut&show_icons=true&theme=material-palenight&hide_border=true&bg_color=20232a&icon_color=58A6FF&text_color=fff&title_color=58A6FF&count_private=true&exclude_repo=Face-Transfer-Application" width="100%" />
     </td>
