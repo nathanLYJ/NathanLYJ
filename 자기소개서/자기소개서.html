@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>자기소개서</title>
+	<link rel="stylesheet" href="reset.css">
+	<link rel="stylesheet" href="style.css">
+	<style>/* 전체 페이지 스타일 */
+		@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+		body {
+			font-family: 'Arial', sans-serif;
+			line-height: 1.6;
+			color: #94b697;
+			font-size: 0.8em;
+			max-width: 1200px;  /* 최대 너비를 늘렸습니다 */
+			margin: 0 auto;
+			padding: 20px;
+		}
+		
+		/* 헤더 스타일 */
+		.main-header {
+			visibility: hidden;
+			height: 0;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.main-title {
+			font-size: 2.5em;
+			color: #2c3e50;
+		}
+		
+		/* 메인 콘텐츠 스타일 */
+		.user-contact {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 10px;
+			margin-top: 20px;
+		}
+		
+		/* 콘텐츠 래퍼 스타일 */
+		.content-wrapper {
+			display: flex;
+			gap: 30px;
+		}
+		/* 사용자 소개 섹션 */
+		.user-intro {
+			flex: 1;  /* 유연하게 늘어나도록 설정 */
+			text-align: center;
+			background-color: #485e51;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.1);
+		}
+		
+		/* 프로필 사진 스타일 수정 */
+		.user-photo {
+			width: 140px;
+			height: 230px;
+			object-fit: cover;  /* 이미지를 컨테이너에 맞게 조절 */
+			object-position: center;  /* 이미지를 중앙에 위치시킴 */
+			border-radius:20%;
+			border: 4px solid rgb(255, 255, 255);
+			box-sizing: border-box;  /* 테두리를 요소의 크기에 포함 */
+		}
+		/* 사용자 소개 섹션 내 이미지 컨테이너 추가 */
+		.user-photo-container {
+			width: 210px;  /* 이미지 크기 + 테두리 두께 */
+			height: 210px;
+			margin: 0 auto 20px;
+			border-radius: 50%;
+			padding: 5px;  /* 내부 여백 추가 */
+			background: linear-gradient(145deg, #ffffff, #ffffff);  /* 그라데이션 배경 추가 */
+			box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.user-name {
+			font-size: 2em;
+			margin-bottom: 10px;
+			color: #f7f3da;
+		}
+		.icons {
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+			color: #94b697;
+			font-size: 0.9em;
+			transition: color 0.3s ease;
+		}
+		.icons:hover {
+			color: #ddfecb;  /* 그라데이션의 시작 색상으로 변경 */
+		}
+		.icons img {
+			width: 20px;  /* 아이콘 크기 조절 */
+			height: 20px;
+			margin-right: 10px;  /* 아이콘과 텍스트 사이 간격 */
+			object-fit: contain;  /* 아이콘 비율 유지 */
+		}
+		
+		.user-signature {
+			font-family: 'Great Vibes', cursive;
+			font-size: 1.em;  /* 폰트 크기를 약간 키웠습니다 */
+			color: #94b697;
+			text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+			line-height: 1.2;  /* 줄 간격 조정 */
+			margin-bottom: 15px;
+		}
+		
+		.user-contact {
+			display: flex;
+			justify-content: center;
+			gap: 20px;
+			margin-top: 20px;
+		}
+		
+		.contact-item {
+			color: #3498db;
+			text-decoration: none;
+		}
+		
+		.user-description, .user-skills {
+			margin: 20px 0;
+		}
+		
+		.user-skills {
+			font-weight: bold;
+			color: #f7f3da;
+			font-size: 20px;
+			text-align: left;
+		}
+		
+		/* 사용자 상세 정보 섹션 */
+		.user-details {
+			flex: 1;  /* 유연하게 늘어나도록 설정 */
+			background-color: #f7f3da;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.1);
+		}
+		
+		.education, .experience, .training, .awards {
+			margin-bottom: 20px;
+		}
+		p {
+			text-align: left;
+			text-indent: 0.4em;
+		}
+		
+		hr {
+			border: none;
+			border-top: 1px solid #95b99c;
+			margin: 20px 0;
+		}
+		.skill-label {
+			margin-bottom: 10px;
+			font-weight: bold;
+			
+		}
+		.skill-container {
+			
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+		.skill-info {
+			
+			display: flex;
+			justify-content:center;
+			flex-basis: 0%;
+			flex-grow: 1;
+			flex-shrink: 1;
+			margin: 5px;
+			background-color: #4b7c71;
+			color: white;
+			border-radius: 20px;
+			font-size: 14px;
+			font-weight: normal;
+			text-decoration: none;
+			transition: background-color 0.3s ease;
+			
+		}
+		.skill-info:hover {
+			background-color: #759e6b;
+			cursor: pointer;
+		}
+		span {
+			text-align: left;
+		}
+		/* 반응형 디자인 */
+		@media (max-width: 768px) {
+			.content-wrapper {
+				flex-direction: column;
+			}
+			
+			body {
+				padding: 10px;
+			}
+			
+			.user-contact {
+				flex-direction: row;
+				justify-content: space-between;
+				flex-wrap: wrap;
+			}
+		
+			.icons {
+				width: calc(50% - 10px);  /* 2열 레이아웃 */
+			}
+		}</style>
+</head>
+
+<body>
+	<header class="main-header">
+		<h1 class="main-title">유원길 자기소개서</h1>
+	</header>
+	<main class="main-content">
+		<div class="content-wrapper">
+			<section class="user-intro">
+				<div class="user-photo-container">
+					<img src="./image/KakaoTalk_20240228_132509094.jpg" alt="사진" class="user-photo">
+				</div>
+				<h2 class="user-name">유원길</h2>
+				<h3 class="user-signature">Nathan liu</h3>
+				<hr>
+				<footer class="user-contact">
+					<a href="" class="icons">
+						<img src="./image/email.png" alt="">nathanlyj@gamil.com
+					</a>
+					<a href="" class="icons">
+						<img src="./image/phone-call.png" alt="">010.
+					</a>
+					<a href="" class="icons">
+						<img src="./image/home.png" alt="">충북
+					</a>
+					<a href="https://nathanlyj.github.io/NathanLYJ/" class="icons">
+						<img src="./image/blogging.png" alt="">https://nathanlyj.github.io/NathanLYJ/
+					</a>
+				</footer>
+				<hr>
+				<h2>자기소개</h2>
+				<p>안녕하세요, 저는 기술로 세상을 더 나은 곳으로 만들고자 하는 개발자입니다.
+				<p>커피숍에서 일하던 중 우연히 접한 로봇 바리스타 기사가 제 인생을 바꿨습니다. 그 순간부터 저는 코딩의 세계에 뛰어들어 로봇공학과 AI의 무한한 가능성에 매료되었죠.
+					저는 기술이 우리 삶을 풍요롭게 만들 수 있다고 믿습니다. </p>
+				<p>새로운 도전을 두려워하지 않으며, 실패는 단지 다른 방법을 찾으라는 신호일 뿐이라고 생각합니다.제 목표는 단순히 뛰어난 개발자가 되는 것이 아닙니다. 장애인을 위한 보조 로봇이나
+					환경 보호를 위한 AI 시스템 개발 등을 통해 사회에 긍정적인 변화를 가져오고 싶습니다.
+					팀워크의 힘을 믿으며, 다양한 의견을 경청하고 시너지를 만들어내는 것을 좋아합니다. </p>
+				<p>이 여정은 쉽지 않겠지만, 저는 이미 첫 걸음을 내딛었습니다. 함께 꿈꾸고, 함께 미래를 창조해 나갈 준비가 되어있습니다. 저와 함께할 분들을 기다리고 있겠습니다!</p>
+				<hr>
+				<div class="user-skills">
+					<span class="skill-label">Skill</span>
+					<div class="skill-container">
+						<span class="skill-info">Python</span>
+						<span class="skill-info">HTML</span>
+						<span class="skill-info">AAAAAAAAAAA</span>
+					</div>
+				</div>
+
+			</section>
+			<section class="user-details">
+			
+			
+				<div class="experience">
+					Project
+					<hr>
+
+
+				</div>
+				
+				<div class="training">
+					교육:
+					제주코딩베이스캠프 Django 백엔드 개발 과정
+				</div>
+				
+				
+			</section>
+		</div>
+	</main>
+</body>
+<a href="https://www.flaticon.com/free-icons/email" title="icons">icons created by Smashicons - Flaticon</a>
+
+</html>
