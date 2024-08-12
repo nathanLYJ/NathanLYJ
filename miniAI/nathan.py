@@ -28,10 +28,11 @@ classifier = NaiveBayesClassifier.train(train_features)
 print("Accuracy:", accuracy(classifier, test_features))
 
 # 새로운 텍스트 분류
+
 def classify_text(text):
     features = extract_features(text.split())
     return classifier.classify(features)
-
+    
 # 예제 리뷰 분류
 example_reviews = [
     "This movie was fantastic! I really enjoyed every moment.",
