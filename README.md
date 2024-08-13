@@ -3,7 +3,7 @@
 <table border="0" cellspacing="0" cellpadding="0">
   <tr border="0">
     <td width="45%" align="center" valign="top" border="0">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nathanlyj&hide=jupyter notebook&layout=donut&show_icons=true&theme=radical&icon_color=58A6Ff&bg_color=20232a&text_color=fff&hide_border=true&count_private=true&exclude_repo=Face-Transfer-Application" width="100%" />
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nathanlyj&layout=donut&show_icons=true&theme=radical&icon_color=58A6Ff&bg_color=20232a&text_color=fff&hide_border=true&count_private=true&exclude_repo=Face-Transfer-Application" width="100%" />
     </td>
     <td width="30%" align="left" valign="top" border="0">
       <h3>저는 열정적인 개발자입니다! 💻</h3>
