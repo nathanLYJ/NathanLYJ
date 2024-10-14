@@ -22,3 +22,6 @@
 
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=nathanlyj&theme=radical&bg_color=20232a&hide_border=true&color=58A6FF" width="100%" />
 
+
+![로고](https://github.com/nathanLYJ/NathanLYJ/blob/main/attackment/weaverse%EB%A1%9C%EA%B3%A0.webp)
+
